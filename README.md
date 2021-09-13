@@ -1,5 +1,7 @@
 # blockchain-developer-bootcamp-final-project
 
+## A Blockchain based Vaccination Passport
+
 A distributed ledger to validate vaccination records in the form of a `passport`, and allow users to vote on related changes to vaccination policies as a DAO. Meant to help with developing international and de-politicized vaccination policies related to battling Covid-19 that is both effective and ethical in a distributed way. Can also help to promote a rewards system to promote the agreed upon policy.
 
 > This is a work-in-progress document, and changes and suggestions are more than welcome!
@@ -33,7 +35,7 @@ Digital vaccination passport is issued upon request from approved facilities wor
 - Approved facility records a transaction on the blockchain, with the user's vaccination/test results
 - Institution mints an NFT that is linked to a user's wallet, and accesible via QR code or biometric scan
 
-- Vaccination policies can be voted on in DAO distributed consensys. A reward system can also be voted on to promote agreed upon policy.
+- Vaccination policies can be voted on in DAO distributed consensus. A reward system can also be voted on to promote agreed upon policy.
 
 
 ## Issues
