@@ -2,6 +2,8 @@
 
 A distributed ledger to validate vaccination records in the form of a `passport`, and allow users to vote on related changes to vaccination policies as a DAO. Meant to help with developing international and de-politicized vaccination policies related to battling Covid-19 that is both effective and ethical in a distributed way. Can also help to promote a rewards system to promote the agreed upon policy.
 
+> This is a work-in-progress document, and changes and suggestions are more than welcome!
+
 ## Problem
 
 Vaccination status in the United States has become quite the political football, and local and national governments are having difficulty coming to any form of unified policy for evaluating and validating an individual's vaccination status. Vaccine policies are being rolled out in a hap-hazard way, as the federal government issues continually stricter (and more divisive) vaccine mandates for government workers. At the same time policies at the state level range from everything from strict vaccine verification to a complete removal of all mandates or proofs of vaccination.
