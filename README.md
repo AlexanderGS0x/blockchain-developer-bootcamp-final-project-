@@ -8,9 +8,9 @@ A distributed ledger to validate vaccination records in the form of a `passport`
 
 ## Problem
 
-Vaccination status in the United States has become quite the political football, and local and national governments are having difficulty coming to any form of unified policy for evaluating and validating an individual's vaccination status. Vaccine policies are being rolled out in a hap-hazard way, as the federal government issues continually stricter (and more divisive) vaccine mandates for government workers. At the same time policies at the state level range from everything from strict vaccine verification to a complete removal of all mandates or proofs of vaccination.
+Vaccination status in the United States has become quite the political football, as local and national governments have difficulty coming to any form of unified policy for evaluating and validating an individual's vaccination status. Vaccine policies are being rolled out in a hap-hazard way, as the federal government issues continually stricter (and more divisive) vaccine mandates for government workers. At the same time policies at the state level range from everything from strict vaccine verification to a complete removal of all mandates or proofs of vaccination.
 
-As the world works toward reopening, many institutions are questioning whether they should require citizens to obtain vaccine passports. Fradulent "passports" are a real concern, as there is no unified policy, or proof of vaccination records. The best we have is an easily forged paper card. Some institutions have quickly developed QR code based web 2.0 health evidence systems as a source of truth for these records.
+As the world works toward reopening, many institutions are questioning whether they should require citizens to obtain vaccine passports. Fradulent "passports" are a real concern, as there is no real unified policy, or proof of a single source of truth of these records (globally). The best we have is an easily forged paper card. Some institutions have quickly developed QR code based web 2.0 health evidence systems as a source of truth for these records.
 
 My key concerns with these approaches are:
 
