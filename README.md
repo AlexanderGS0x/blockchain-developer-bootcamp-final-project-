@@ -2,7 +2,7 @@
 
 ## A Blockchain based Vaccination Passport
 
-A distributed ledger to validate vaccination records in the form of a `passport`, and allow users to vote on related changes to vaccination policies as a DAO. Meant to help with developing international and de-politicized vaccination policies related to battling Covid-19 that is both effective and ethical in a distributed way. Can also help to promote a rewards system to promote the agreed upon policy.
+A distributed ledger to validate vaccination records in the form of a `passport`, and allow users to vote on related changes to vaccination policies as a DAO in an ethical and inclusive way. Meant to help with developing international standards and de-politicized vaccination policies related to combatting Covid-19. Can also help to promote a rewards system to facilitate the agreed upon policy.
 
 > This is a work-in-progress document, and changes and suggestions are more than welcome!
 
