@@ -1,0 +1,29 @@
+{
+  "name": "blockchain-developer-bootcamp-final-project",
+  "version": "1.0.0",
+  "description": "## A Blockchain based Offer-up/Craigslist/ebay clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gambinish/blockchain-developer-bootcamp-final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gambinish/blockchain-developer-bootcamp-final-project/issues"
+  },
+  "homepage": "https://github.com/gambinish/blockchain-developer-bootcamp-final-project#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "ethers": "^5.4.7",
+    "hardhat": "^2.6.6"
+  },
+  "dependencies": {
+    "@alch/alchemy-web3": "^1.1.5",
+    "@openzeppelin/contracts": "^4.3.2",
+    "dotenv": "^10.0.0"
+  }
+}
