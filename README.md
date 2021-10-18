@@ -1,70 +1,33 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## A Blockchain based car marketplace
 
-## Available Scripts
+A distributed, ad-free marketplace that allows people to buy and sell cars in a similar way to how an nft marketplace works. The car's title will be a minted nft, while the associated metadata will be deployed to ipfs.
 
-In the project directory, you can run:
+### The Problem
 
-### `yarn start`
+Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplcae to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's PoW consenus mechanism.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Users should be able to upload items they want to sell. Each item will effectively be an nft, created by a smart-contract that publishes the sales listing to the public blockchain. The posting will have a starting value, and a set expiration time whereby it can accept "bids" for the item being sold.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- User uploads a sales listing, minting an nft in the process. Only allow new nft's to be minted if an nft doesn't already exist for a vehicles vin (consult oracle?)
+- NFT meta-data will be queried from the blockchain via graph protocol to render out the sales listing on the front end (react)
+- On a successful bid, funds will be held in escrow until the product has been confirmed by both parties to have shifted hands.
 
-### `yarn test`
+## Smart Contracts
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This dApp will be backed by 2-3 smart contracts
 
-### `yarn build`
+1. VehicleTitle - nft representing the ownership of an item on the blockshain, linking to metadata on ipfs, via Pinata sdk
+2. VehicleMarketPlace = smart contract where users can enter into bids for a vehicle (or, more accurately its nft title). Smart contract will hold title and funds in escrow until both seller and buyer approve transaction
+3. VehicleMintOracle - stretch goal. NFT titles should only be minted if one doesn't already exist for an existing VIN number. For used cars, the owner of the contract must be the existing owner of the vehicle.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Web Client: [React](https://reactjs.org/)
+- Web API: [Express](https://expressjs.com/)
+- Blockchain API: [The Graph](https://thegraph.com/en/)
+- Blockchain Toolkit: [Hardhat](https://hardhat.org/)
+- Blockchain Observability: [Alchemy](https://docs.alchemy.com/alchemy/)
+- NFT Contract Library: [Open Zeppelin](https://openzeppelin.com/)
+- NFT metadata distro: [Pinata](https://www.pinata.cloud/)
