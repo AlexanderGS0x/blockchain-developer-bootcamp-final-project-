@@ -24,10 +24,10 @@ Users should be able to upload items they want to sell. Each item will effective
 
 ## Tech Stack:
 
-- Web Client: [React]()
-- Web API: [Express]()
-- Blockchain API: [The Graph]()
-- Blockchain Toolkit: [Hardhat]()
-- Blockchain Observability: [Alchemy]()
-- NFT toolkit: [Open Zeppelin]()
+- Web Client: [React](https://reactjs.org/)
+- Web API: [Express](https://expressjs.com/)
+- Blockchain API: [The Graph](https://thegraph.com/en/)
+- Blockchain Toolkit: [Hardhat](https://hardhat.org/)
+- Blockchain Observability: [Alchemy](https://docs.alchemy.com/alchemy/)
+- NFT Contract Library: [Open Zeppelin](https://openzeppelin.com/)
 
