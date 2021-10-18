@@ -11,7 +11,7 @@ Smart contracts will handle business logic associated with escrow funds and tran
 
 ## The Problem
 
-Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplcae to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's consenus mechanism.
+Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplace to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's consenus mechanism.
 
 Users should be able to upload items they want to sell. Each item will effectively be an nft, created by a smart-contract that publishes the sales listing to the public blockchain. The posting will have a starting value, and a set expiration time whereby it can accept "bids" for the item being sold.
 
