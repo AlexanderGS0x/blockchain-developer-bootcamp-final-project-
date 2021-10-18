@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-## A Blockchain based car marketplace
+# A Blockchain based car marketplace
 
 A distributed, ad-free marketplace that allows people to buy and sell cars in a similar way to how an nft marketplace works. The car's title will be a minted nft, while the associated metadata will be deployed to ipfs.
 
