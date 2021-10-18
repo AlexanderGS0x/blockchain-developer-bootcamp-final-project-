@@ -23,7 +23,7 @@ Users should be able to upload items they want to sell. Each item will effective
 
 This dApp will be backed by 2-3 smart contracts
 
-1. VehicleTitleNft - nft representing the ownership of an item on the blockshain, linking to metadata on ipfs, via Pinata sdk
+1. VehicleTitleNft - nft representing the ownership of an item on the blockchain, linking to metadata on ipfs, via Pinata sdk
 2. VehicleMarketPlace = smart contract where users can enter into bids for a vehicle (or, more accurately it's nft title). Smart contract will hold title and funds in escrow until both seller and buyer approve transaction
 3. VehicleMintOracle - stretch goal. NFT titles should only be minted if one doesn't already exist for an existing VIN number. For used cars that don't yet have minted nft's on-chain, the owner of the contract must verified to be the existing owner of the vehicle title.
 
