@@ -1,20 +1,12 @@
-# blockchain-developer-bootcamp-final-project
+# Getting Started with Create React App
 
 ## A Blockchain based car marketplace
 
 A distributed, ad-free marketplace that allows people to buy and sell cars in a similar way to how an nft marketplace works. The car's title will be a minted nft, while the associated metadata will be deployed to ipfs.
 
-> This is a work-in-progress document, and changes and suggestions are more than welcome!
+### The Problem
 
-## Problem
-
-Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplcae to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's PoW consenus mechanism. 
-
-## Purpose
-
-Proof of concept dApp that illustrates how an nft can represent the ownership of a vehicle, and enable it to be bought and sold on a distributed marketplace.
-
-## User Flow / MVP
+Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplcae to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's PoW consenus mechanism.
 
 Users should be able to upload items they want to sell. Each item will effectively be an nft, created by a smart-contract that publishes the sales listing to the public blockchain. The posting will have a starting value, and a set expiration time whereby it can accept "bids" for the item being sold.
 
@@ -39,4 +31,3 @@ This dApp will be backed by 2-3 smart contracts
 - Blockchain Observability: [Alchemy](https://docs.alchemy.com/alchemy/)
 - NFT Contract Library: [Open Zeppelin](https://openzeppelin.com/)
 - NFT metadata distro: [Pinata](https://www.pinata.cloud/)
-
