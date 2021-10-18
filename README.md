@@ -12,7 +12,7 @@ Car titles are easily fraudulent, and leads to risky purchases and exchanges. A 
 
 ## Purpose
 
-Proof of concept that illustrates how an nft can represent the ownership of a vehicle, and enable it to be bought and sold on a distributed marketplace.
+Proof of concept dApp that illustrates how an nft can represent the ownership of a vehicle, and enable it to be bought and sold on a distributed marketplace.
 
 ## User Flow / MVP
 
