@@ -1,7 +1,7 @@
 # TitleX - A blockchain based car marketplace 🚙
 ### 🚧 This repo is under construction 🚧
 
-A distributed, ad-free marketplace that allows people to buy and sell cars in a similar way to how an nft marketplace works. The car's title will be a minted nft, while the associated metadata will be deployed to ipfs.
+A distributed marketplace that allows people to buy and sell cars in a similar way to how an nft marketplace works. The car's title will be a minted nft, while the associated metadata will be deployed to ipfs.
 
 Users will interact with a traditional web client (react) that will display the metadata for all available cars for sale. These metadata are associated to a car title nft on the public blockchain.
 
