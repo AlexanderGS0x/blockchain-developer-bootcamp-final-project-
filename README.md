@@ -22,6 +22,14 @@ Users should be able to upload items they want to sell. Each item will effective
 - NFT meta-data will be queried from the blockchain via graph protocol to render out the sales listing on the front end (react)
 - On a successful bid, funds will be held in escrow until the product has been confirmed by both parties to have shifted hands.
 
+## Smart Contracts
+
+This dApp will be backed by 2-3 smart contracts
+
+1. VehicleTitle - nft representing the ownership of an item on the blockshain, linking to metadata on ipfs, via Pinata sdk
+2. VehicleMarketPlace = smart contract where users can enter into bids for a vehicle (or, more accurately its nft title). Smart contract will hold title and funds in escrow until both seller and buyer approve transaction
+3. VehicleMintOracle - stretch goal. NFT titles should only be minted if one doesn't already exist for an existing VIN number. For used cars, the owner of the contract must be the existing owner of the vehicle.
+
 ## Tech Stack:
 
 - Web Client: [React](https://reactjs.org/)
@@ -30,4 +38,5 @@ Users should be able to upload items they want to sell. Each item will effective
 - Blockchain Toolkit: [Hardhat](https://hardhat.org/)
 - Blockchain Observability: [Alchemy](https://docs.alchemy.com/alchemy/)
 - NFT Contract Library: [Open Zeppelin](https://openzeppelin.com/)
+- NFT metadata distro: [Pinata](https://www.pinata.cloud/)
 
