@@ -1,4 +1,6 @@
-# A Blockchain based car marketplace
+# TitleX
+### 🚙 A Blockchain based car marketplace
+### 🚧 This repo is under construction 🚧
 
 A distributed, ad-free marketplace that allows people to buy and sell cars in a similar way to how an nft marketplace works. The car's title will be a minted nft, while the associated metadata will be deployed to ipfs.
 
@@ -8,9 +10,9 @@ Web client will interact with a traditional web api (express) that will handle a
 
 Smart contracts will handle business logic associated with escrow funds and transfering ownership of nfts.
 
-### The Problem
+## The Problem
 
-Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplcae to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's PoW consenus mechanism.
+Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplcae to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's consenus mechanism.
 
 Users should be able to upload items they want to sell. Each item will effectively be an nft, created by a smart-contract that publishes the sales listing to the public blockchain. The posting will have a starting value, and a set expiration time whereby it can accept "bids" for the item being sold.
 
