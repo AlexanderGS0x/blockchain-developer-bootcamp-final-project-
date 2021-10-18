@@ -15,7 +15,7 @@ Car titles are easily fraudulent, and leads to risky purchases and exchanges. A 
 Users should be able to upload items they want to sell. Each item will effectively be an nft, created by a smart-contract that publishes the sales listing to the public blockchain. The posting will have a starting value, and a set expiration time whereby it can accept "bids" for the item being sold.
 
 - User uploads a sales listing, minting an nft in the process. Only allow new nft's to be minted if an nft doesn't already exist for a vehicle's vin (consult oracle?)
-- NFT meta-data will be queried from the blockchain via graph protocol to render out the sales listing on the front end (react)
+- NFT meta-data will be queried from the blockchain via graph protocol to render out the sales listing on the front end client via web api
 - On a successful bid, funds will be held in escrow until the product has been confirmed by both parties to have shifted hands.
 
 ## Smart Contracts
