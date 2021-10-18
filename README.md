@@ -2,6 +2,12 @@
 
 A distributed, ad-free marketplace that allows people to buy and sell cars in a similar way to how an nft marketplace works. The car's title will be a minted nft, while the associated metadata will be deployed to ipfs.
 
+Users will interact with a traditional web client (react) that will display the metadata for all available cars for sale. These metadata are associated to a car title nft on the public blockchain.
+
+Web client will interact with a traditional web api (express) that will handle all the api secrets, and will interact with the blockchain directly via smart contract abi's (hardhat).
+
+Smart contracts will handle business logic associated with escrow funds and transfering ownership of nfts.
+
 ### The Problem
 
 Car titles are easily fraudulent, and leads to risky purchases and exchanges. A marketplcae to buy and sell items is an ideal application of blockchain technologies. Deploying car titles to a public ledger would allow these transactions to be validated via ethereum's PoW consenus mechanism.
