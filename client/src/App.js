@@ -24,7 +24,7 @@ function App() {
     await window.ethereum.request({ method: "eth_requestAccounts" });
   }
 
-  // call the smart contract, read the current greeting value
+  // call metamask, send pub address to server, and log connected account in response
   async function logProviderAccount() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const accounts = await provider.listAccounts();
