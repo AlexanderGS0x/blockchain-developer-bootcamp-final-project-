@@ -8,6 +8,9 @@ import { AppHeader } from "./AppHeader";
 export const AppMain = () => {
   return (
     <Switch>
+      <Route exact path="/">
+        <Link to="/marketplace">Open App</Link>
+      </Route>
       <Route path="/marketplace">
         <div>
           <AppHeader title="Marketplace" />
