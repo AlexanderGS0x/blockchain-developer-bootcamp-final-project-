@@ -1,16 +1,26 @@
 import "../index.css";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import { AppMain } from "./AppMain";
 
 export const AppSidebar = () => {
   return (
-    <div className="app-sidebar">
-      <div className="logo">
-        <img src="logo.png" width="100%" />
+    <Router>
+      <div className="app-sidebar">
+        <div className="logo">
+          <img src="logo.png" width="100%" />
+        </div>
+        <ul className="sidebar-links">
+          <li>
+            <Link to="/marketplace">Marketplace</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </ul>
       </div>
-      <ul className="sidebar-links">
-        <li>Marketplace</li>
-        <li>Dashboard</li>
-        <li>Settings</li>
-      </ul>
-    </div>
+      <AppMain />
+    </Router>
   );
 };

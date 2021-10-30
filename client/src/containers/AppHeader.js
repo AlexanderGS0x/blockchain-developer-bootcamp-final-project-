@@ -1,91 +1,13 @@
-import { useEffect, useState, useRef } from "react";
-import { useWeb3React } from "@web3-react/core";
-import { Button, Tag } from "@blueprintjs/core";
-import { injected } from "../App";
-import { ethers } from "ethers";
-import Jazzicon from "@metamask/jazzicon";
+import { ConnectWallet } from "../components/ConnectWallet";
 
-import { SUPPORTED_CHAINS } from "../App";
-import { Identicon } from "../components/Identicon";
-
-export const AppHeader = () => {
-  const web3React = useWeb3React();
-  const { chainId, active, account, library, connector, activate, deactivate } =
-    useWeb3React();
-  const [isWalletConnected, setIsWalletConnected] = useState(account);
-  const [balanceInEth, setBalanceInEth] = useState(null);
-
-  useEffect(() => {
-    setIsWalletConnected(account);
-  }, [account]);
-
-  useEffect(() => {
-    // call the smart contract, send an update
-    async function getBalance() {
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const balance = await provider.getBalance(account);
-        setBalanceInEth(`${ethers.utils.formatEther(balance)} ETH`);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getBalance();
-  }, [account]);
-
-  // you can't "log out" of metamask through a client side app
-  // user must log out through their wallet for security concerns. common practice in Defi platforms (see uniswap)
-  // this is an ongoing issue with metamask.
-
-  // request access to the user's MetaMask account
-  async function connect() {
-    try {
-      const account = await activate(injected);
-      console.log(account);
-    } catch (ex) {
-      console.log(ex);
-    }
-  }
-
-  async function openWalletModal() {
-    console.log("open wallet modal");
-    // TODO: implement wallet info modal
-  }
-
-  const slugifyAccount = (account) => {
-    if (account) {
-      let accountString = account;
-      let pre = accountString.slice(0, 6);
-      let post = accountString.slice(account.length - 4);
-      return `${pre}...${post}`;
-    }
-  };
-
+export const AppHeader = ({ title }) => {
   return (
     <div className="app-header">
-      <div>Marketplace</div>
+      <div>{title}</div>
       {/* <button onClick={deployContract}>Deploy</button>
         <button onClick={logProviderAccount}>Log Provider</button>
         <button onClick={requestAccount}>Connect Metamask Wallet</button> */}
-      {!isWalletConnected && (
-        <div className="app-header__connect-wallet-wrapper">
-          <Button intent="success" onClick={connect} text="Connect Wallet" />
-        </div>
-      )}
-      {isWalletConnected && (
-        <div className="app-header__connect-wallet-wrapper">
-          <Tag className="wallet-tag">{SUPPORTED_CHAINS[chainId]}</Tag>
-          <Tag className="wallet-tag">{balanceInEth}</Tag>
-          <Button
-            className="wallet-tag"
-            intent="danger"
-            onClick={openWalletModal}
-            text={slugifyAccount(account)}
-            rightIcon={<Identicon />}
-          />
-          <Tag className="wallet-tag">...</Tag>
-        </div>
-      )}
+      <ConnectWallet />
     </div>
   );
 };

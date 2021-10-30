@@ -38,7 +38,6 @@ function App() {
     <Web3ReactProvider getLibrary={getLibrary}>
       <div className="app-wrapper">
         <AppSidebar />
-        <AppMain />
       </div>
     </Web3ReactProvider>
   );
