@@ -73,11 +73,17 @@ body {
 
 .dashboard-grid__row-middle--grid-item {
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: solid #d3d3d3 1px;
   border-radius: 3px;
+}
+
+.dashboard-grid__row-middle--grid-item--icon {
+  height: 200px;
+  width: 200px;
 }
 
 .dashboard-grid__row-bottom {

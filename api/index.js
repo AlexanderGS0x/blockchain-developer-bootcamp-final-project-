@@ -1,11 +1,14 @@
 require("dotenv").config();
 const { create } = require("ipfs-http-client");
 const express = require("express");
+const formidableMiddleware = require("express-formidable");
 const cors = require("cors");
+const fs = require("fs");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(formidableMiddleware());
 
 const port = process.env.EXPRESS_PORT;
 const ipfs = create("https://ipfs.infura.io:5001/api/v0");
@@ -96,42 +99,14 @@ app.post("/buy-nft", async (req, res) => {
 
 // upload file to ipfs, then create nft on blockchain
 app.post("/create-nft", async (req, res) => {
-  const { fileUrl, price, name, description } = req.body;
-  const { file } = req.file;
+  const file = req.files["nft.asset"];
+  let testFile = fs.readFileSync(file.path);
+  let testBuffer = new Buffer.from(testFile);
 
-  const added = await ipfs.add(file, {
-    progress: (prog) => console.log(`received: ${prog}`),
-  });
-  const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+  let added = await ipfs.add(testBuffer);
 
-  async function onChange(e) {
-    const file = e.target.files[0];
-    try {
-      const added = await ipfs.add(file, {
-        progress: (prog) => console.log(`received: ${prog}`),
-      });
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-      setFileUrl(url);
-    } catch (error) {
-      console.log("Error uploading file: ", error);
-    }
-  }
-
-  if (!name || !description || !price || !fileUrl) return; // throw error instead
-  /* first, upload to IPFS */
-  const data = JSON.stringify({
-    name,
-    description,
-    image: fileUrl,
-  });
-  try {
-    const added = await ipfs.add(data);
-    const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-    /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
-    createSale(url);
-  } catch (error) {
-    console.log("Error uploading file: ", error);
-  }
+  // pass upload data back to client to store in polygon blockchain
+  return res.status(201).json(added);
 });
 
 const createSale = async (url, signer) => {
