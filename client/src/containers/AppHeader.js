@@ -3,7 +3,7 @@ import { ConnectWallet } from "../components/ConnectWallet";
 export const AppHeader = ({ title }) => {
   return (
     <div className="app-header">
-      <div>{title}</div>
+      <h2>{title}</h2>
       {/* <button onClick={deployContract}>Deploy</button>
         <button onClick={logProviderAccount}>Log Provider</button>
         <button onClick={requestAccount}>Connect Metamask Wallet</button> */}

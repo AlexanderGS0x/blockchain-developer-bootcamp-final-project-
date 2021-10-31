@@ -5,21 +5,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 .app-wrapper {
-  outline: solid green 2px;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: 250px 1fr;
 }
 
 .app-sidebar {
   height: 100%;
-  outline: solid green 2px;
+  border-right: solid #d3d3d3 1px;
 }
 
 .app-header {
@@ -29,12 +22,13 @@ code {
   padding-left: 10px;
   padding-right: 10px;
   height: 75px;
-  outline: solid red 2px;
+  border-bottom: solid #d3d3d3 1px;
 }
 
 .app-main {
   height: 100%;
   width: 100%;
+  background-color: #fffffd;
 }
 
 /* marketplace */
@@ -47,7 +41,7 @@ code {
 }
 
 .grid-item {
-  outline: solid black 2px;
+  outline: solid #d3d3d3 1px;
   height: 200px;
 }
 
@@ -67,7 +61,7 @@ code {
 
 .dashboard-grid__row-top--grid-item {
   height: 100%;
-  outline: solid black 2px;
+  outline: solid #d3d3d3 1px;
 }
 
 .dashboard-grid__row-middle {
@@ -79,7 +73,11 @@ code {
 
 .dashboard-grid__row-middle--grid-item {
   height: 100%;
-  outline: solid black 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid #d3d3d3 1px;
+  border-radius: 3px;
 }
 
 .dashboard-grid__row-bottom {
@@ -104,4 +102,15 @@ code {
   width: 1rem;
   border-radius: 1.125rem;
   background-color: black;
+}
+
+/* welcome page */
+
+.welcome-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
