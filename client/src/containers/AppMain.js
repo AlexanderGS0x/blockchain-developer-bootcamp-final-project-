@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Marketplace } from "./Marketplace";
 import { Dashboard } from "./Dashboard";
 import { AppHeader } from "./AppHeader";
+import { Welcome } from "./Welcome";
 
 export const AppMain = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Link to="/marketplace">Open App</Link>
+        <Welcome />
       </Route>
       <Route path="/marketplace">
         <div>

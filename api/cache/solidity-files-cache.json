@@ -1,85 +1,12 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/VehicleMarketplace.sol": {
-      "lastModificationDate": 1634522108465,
-      "contentHash": "e4637a432ccb78a922b07653a6bae126",
-      "sourceName": "contracts/VehicleMarketplace.sol",
-      "solcConfig": {
-        "version": "0.8.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "VehicleMarketPlace"
-      ]
-    },
-    "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/VehicleTitleNft.sol": {
-      "lastModificationDate": 1634521991532,
-      "contentHash": "a3b5dfc9a2b7fa09555c9ff2a7c2cca3",
-      "sourceName": "contracts/VehicleTitleNft.sol",
-      "solcConfig": {
-        "version": "0.8.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "VehicleTitleNft"
-      ]
-    },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-      "lastModificationDate": 1634521944397,
+      "lastModificationDate": 1635295763957,
       "contentHash": "a4f6dccf3f15b6844e357f737a572388",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -117,11 +44,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/utils/Counters.sol": {
-      "lastModificationDate": 1634521944391,
+      "lastModificationDate": 1635295763394,
       "contentHash": "b7811964d33f23b2d45ed3ebb76a4548",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -151,11 +78,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1634521944412,
+      "lastModificationDate": 1635295764440,
       "contentHash": "4fe56b59ced59d87df6b796758f62895",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -187,11 +114,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol": {
-      "lastModificationDate": 1634521944398,
+      "lastModificationDate": 1635295764061,
       "contentHash": "94da923c22e9773af388607307182c80",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -223,11 +150,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-      "lastModificationDate": 1634521944409,
+      "lastModificationDate": 1635295764319,
       "contentHash": "53919d6975f2c0f3dffee5e3a1064116",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -259,11 +186,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
-      "lastModificationDate": 1634521944410,
+      "lastModificationDate": 1635295764348,
       "contentHash": "9a367cecca6fed80a3e975b7e6b3bd5c",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -293,11 +220,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
-      "lastModificationDate": 1634521944410,
+      "lastModificationDate": 1635295764339,
       "contentHash": "8aa69ca8424167555baaaa9f607801db",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -329,11 +256,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/utils/Address.sol": {
-      "lastModificationDate": 1634521944390,
+      "lastModificationDate": 1635295763293,
       "contentHash": "c5f6c4e4df069c789e7d84b4c3011913",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -363,11 +290,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1634521944391,
+      "lastModificationDate": 1635295763388,
       "contentHash": "851485d5b925529b1a2f34a0be077891",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -397,11 +324,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
-      "lastModificationDate": 1634521944415,
+      "lastModificationDate": 1635295764520,
       "contentHash": "62142442bed149f965c5ed971fae4182",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -431,11 +358,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-      "lastModificationDate": 1634521944394,
+      "lastModificationDate": 1635295763700,
       "contentHash": "a9a5319dff9088c6ffe757ea1c2a6729",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -467,11 +394,11 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-      "lastModificationDate": 1634521944406,
+      "lastModificationDate": 1635295764263,
       "contentHash": "9a04322bb8f6b8f2767d8358d1d2537b",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -498,6 +425,152 @@
       ],
       "artifacts": [
         "IERC165"
+      ]
+    },
+    "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/Market.sol": {
+      "lastModificationDate": 1635655280308,
+      "contentHash": "de0049a07bd6f9a1cc53dfdff0c68d96",
+      "sourceName": "contracts/Market.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/security/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "NFTMarket"
+      ]
+    },
+    "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol": {
+      "lastModificationDate": 1635295764474,
+      "contentHash": "53fbff678f378956efcb207fa748eaa6",
+      "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1635295765224,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    },
+    "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/NFT.sol": {
+      "lastModificationDate": 1635654312242,
+      "contentHash": "595838e0338e6c7d10525a2a67171085",
+      "sourceName": "contracts/NFT.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.3"
+      ],
+      "artifacts": [
+        "NFT"
       ]
     }
   }
