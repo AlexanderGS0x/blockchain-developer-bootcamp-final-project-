@@ -1,6 +1,8 @@
 import "../index.css";
 import { Icon, Card } from "@blueprintjs/core";
 
+import { FileInputCard } from "../components/FileInputCard";
+
 export const Dashboard = () => {
   return (
     <div className="dashboard-grid">
@@ -17,15 +19,18 @@ export const Dashboard = () => {
         <div className="dashboard-grid__row-top--grid-item">Support</div>
       </div>
       <div className="dashboard-grid__row-middle">
-        <Card className="dashboard-grid__row-middle--grid-item" interactive>
-          <Icon icon="media" size="large" color="#d3d3d3" />
-        </Card>
+        <FileInputCard />
         <Card
           className="dashboard-grid__row-middle--grid-item"
           interactive
           minimal
         >
-          <Icon icon="edit" size="large" color="#d3d3d3" />
+          <Icon
+            icon="edit"
+            size="large"
+            color="#d3d3d3"
+            className="dashboard-grid__row-middle--grid-item--icon"
+          />
         </Card>
       </div>
       <div className="dashboard-grid__row-bottom">
