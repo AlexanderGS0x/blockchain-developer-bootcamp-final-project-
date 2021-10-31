@@ -11,7 +11,8 @@
     "@openzeppelin/contracts": "^4.3.2",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ipfs-http-client": "^50.1.2"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
