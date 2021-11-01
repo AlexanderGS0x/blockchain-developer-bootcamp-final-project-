@@ -103,10 +103,20 @@ app.post("/create-nft", async (req, res) => {
   let testFile = fs.readFileSync(file.path);
   let testBuffer = new Buffer.from(testFile);
 
-  let added = await ipfs.add(testBuffer);
+  let ipfsUpload = await ipfs.add(testBuffer);
 
+  console.log("FIELDS: ", req.fields); // store fields to blockchain
+
+  const payload = {
+    asset: ipfsUpload,
+    metadata: {
+      title: req.fields["nft.title"],
+      price: req.fields["nft.price"],
+      description: req.fields["nft.description"],
+    },
+  };
   // pass upload data back to client to store in polygon blockchain
-  return res.status(201).json(added);
+  return res.status(201).json(payload);
 });
 
 const createSale = async (url, signer) => {
