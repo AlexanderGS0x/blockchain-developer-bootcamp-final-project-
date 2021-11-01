@@ -1,7 +1,7 @@
 import "../index.css";
 import { Icon, Card } from "@blueprintjs/core";
 
-import { FileInputCard } from "../components/FileInputCard";
+import { NFTCreationPanel } from "../components/NFTCreationPanel";
 
 export const Dashboard = () => {
   return (
@@ -18,21 +18,7 @@ export const Dashboard = () => {
         </div>
         <div className="dashboard-grid__row-top--grid-item">Support</div>
       </div>
-      <div className="dashboard-grid__row-middle">
-        <FileInputCard />
-        <Card
-          className="dashboard-grid__row-middle--grid-item"
-          interactive
-          minimal
-        >
-          <Icon
-            icon="edit"
-            size="large"
-            color="#d3d3d3"
-            className="dashboard-grid__row-middle--grid-item--icon"
-          />
-        </Card>
-      </div>
+      <NFTCreationPanel />
       <div className="dashboard-grid__row-bottom">
         <div className="grid-item">1</div>
         <div className="grid-item">2</div>
