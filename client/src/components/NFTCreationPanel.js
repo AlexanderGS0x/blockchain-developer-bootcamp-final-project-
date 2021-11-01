@@ -8,16 +8,19 @@ export const NFTCreationPanel = () => {
   const NFTCreationForm = useForm({
     onSubmit: async (values) => {
       console.log("Values: ", values);
-      // //   setSaving(true);
-      // let data = new FormData();
-      // data.append("nft.asset", values.nft_asset);
-      // // handle api here
-      // const response = await fetch("http://localhost:8080/create-nft", {
-      //   method: "POST",
-      //   body: data,
-      // });
-      // const jsonResponse = await response.json();
-      // console.log("RESPONSE: ", jsonResponse);
+      //   setSaving(true);
+      let data = new FormData();
+      data.append("nft.asset", values.nft_asset);
+      data.append("nft.description", values.nft_description);
+      data.append("nft.price", values.nft_price);
+      data.append("nft.title", values.nft_title);
+      // handle api here
+      const response = await fetch("http://localhost:8080/create-nft", {
+        method: "POST",
+        body: data,
+      });
+      const jsonResponse = await response.json();
+      console.log("RESPONSE: ", jsonResponse);
     },
     // debugForm: true,
   });
