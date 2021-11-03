@@ -3,7 +3,7 @@ import { InputGroup } from "@blueprintjs/core";
 
 export const NFTPriceInput = () => {
   const {
-    meta: { error, isTouched },
+    // meta: { error, isTouched },
     getInputProps,
   } = useField("nft_price", {
     validate: validateInput,

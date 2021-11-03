@@ -1,5 +1,5 @@
 import "../index.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { Marketplace } from "./Marketplace";
 import { Dashboard } from "./Dashboard";

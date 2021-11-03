@@ -1,5 +1,5 @@
 import "../index.css";
-import { Card, TextArea, InputGroup } from "@blueprintjs/core";
+import { Card } from "@blueprintjs/core";
 
 import { NFTTitleInput } from "./NFTTitleInput";
 import { NFTPriceInput } from "./NFTPriceInput";

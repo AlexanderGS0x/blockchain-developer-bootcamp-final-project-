@@ -10,11 +10,23 @@ app.use(cors());
 app.use(express.json());
 app.use(formidableMiddleware());
 
+const nftMarketABI = require("./artifacts/contracts/Market.sol/NFTMarket.json");
+const nftMintABI = require("./artifacts/contracts/NFT.sol/NFT.json");
+
 const port = process.env.EXPRESS_PORT;
 const ipfs = create("https://ipfs.infura.io:5001/api/v0");
 
 app.get("/", (req, res) => {
   res.send("Welcome to TitleX api!");
+});
+
+app.get("/get-market-contract", (req, res) => {
+  return res.status(200).json({
+    nftMarketAddress: process.env.NFT_MARKET_ADDRESS,
+    nftMarketContract: nftMarketABI,
+    nftMintAddress: process.env.NFT_MINT_ADDRESS,
+    nftMintContract: nftMintABI,
+  });
 });
 
 app.post("/mint", (req, res) => {
@@ -105,10 +117,14 @@ app.post("/create-nft", async (req, res) => {
 
   let ipfsUpload = await ipfs.add(testBuffer);
 
-  console.log("FIELDS: ", req.fields); // store fields to blockchain
+  if (!ipfsUpload) {
+    return res
+      .status(500)
+      .json({ error: "There was a problem uploading the asset to ipfs" });
+  }
 
   const payload = {
-    asset: ipfsUpload,
+    asset_url: `${process.env.IPFS_HOST}${ipfsUpload.path}`,
     metadata: {
       title: req.fields["nft.title"],
       price: req.fields["nft.price"],

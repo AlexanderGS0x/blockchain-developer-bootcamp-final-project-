@@ -1,5 +1,4 @@
 import "../index.css";
-import { Icon, Card } from "@blueprintjs/core";
 
 import { NFTCreationPanel } from "../components/NFTCreationPanel";
 

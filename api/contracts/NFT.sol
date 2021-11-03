@@ -15,6 +15,10 @@ contract NFT is ERC721URIStorage {
         contractAddress = marketplaceAddress;
     }
 
+    event TestEvent(
+        uint256 newItemId
+    );
+
     function createToken(string memory tokenURI) public returns (uint256) {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();

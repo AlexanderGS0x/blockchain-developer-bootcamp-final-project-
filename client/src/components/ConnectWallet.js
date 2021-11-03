@@ -38,6 +38,7 @@ export const ConnectWallet = () => {
   async function connect() {
     try {
       const account = await activate(injected);
+      console.log("ACCOUNT: ", account);
       console.log(account);
     } catch (ex) {
       console.log(ex);

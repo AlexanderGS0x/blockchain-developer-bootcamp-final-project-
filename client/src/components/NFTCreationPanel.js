@@ -1,4 +1,6 @@
 import "../index.css";
+import Web3Modal from "web3modal";
+import { ethers } from "ethers";
 import { useForm } from "react-form";
 import { Button } from "@blueprintjs/core";
 import { FileInputCard } from "./FileInputCard";
@@ -8,19 +10,69 @@ export const NFTCreationPanel = () => {
   const NFTCreationForm = useForm({
     onSubmit: async (values) => {
       console.log("Values: ", values);
-      //   setSaving(true);
+
+      // first upload asset to ipfs:
       let data = new FormData();
       data.append("nft.asset", values.nft_asset);
       data.append("nft.description", values.nft_description);
       data.append("nft.price", values.nft_price);
       data.append("nft.title", values.nft_title);
-      // handle api here
-      const response = await fetch("http://localhost:8080/create-nft", {
+
+      const ipfsResponse = await fetch("http://localhost:8080/create-nft", {
         method: "POST",
         body: data,
       });
-      const jsonResponse = await response.json();
-      console.log("RESPONSE: ", jsonResponse);
+      const ipfsJsonResponse = await ipfsResponse.json();
+
+      const { asset_url, metadata } = ipfsJsonResponse;
+
+      console.log({ asset_url, metadata });
+
+      // catch errors, update progress bar
+
+      // sign transaction in metamask:
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);
+      const signer = provider.getSigner();
+
+      const response = await fetch("http://localhost:8080/get-market-contract");
+      const jsonMarketContractResponse = await response.json();
+
+      // console.log("JSON Response: ", jsonResponse);
+
+      const {
+        nftMarketAddress,
+        nftMarketContract,
+        nftMintAddress,
+        nftMintContract,
+      } = jsonMarketContractResponse;
+
+      const marketContract = new ethers.Contract(
+        nftMarketAddress,
+        nftMarketContract.abi,
+        signer
+      );
+
+      const nftContract = new ethers.Contract(
+        nftMintAddress,
+        nftMintContract.abi,
+        signer
+      );
+
+      // // this bit of code opens up metamask and asks for confirmation of tx
+      // // user can change amount of gas in order to prioritize/deprioritize tx
+      const transaction = await nftContract.createToken(asset_url);
+      let tx = await transaction.wait();
+      // let event = tx.events[0];
+      // let value = event.args[2];
+      // let tokenId = value.toNumber(); // a new NFT has been created!
+
+      console.log("TX: ", tx);
+      // const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider);
+      // const data = await marketContract.fetchMyNFTs();
+
+      // console.log("SIGNER: ", signer);
     },
     // debugForm: true,
   });

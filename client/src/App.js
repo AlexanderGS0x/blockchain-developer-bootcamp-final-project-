@@ -7,7 +7,6 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 import { Web3Provider } from "@ethersproject/providers";
 
 import { AppSidebar } from "./containers/AppSidebar";
-import { AppMain } from "./containers/AppMain";
 
 export const SUPPORTED_CHAINS = {
   1: "Mainnet",
@@ -15,6 +14,7 @@ export const SUPPORTED_CHAINS = {
   4: "Rinkeby",
   5: "Goerli",
   42: "Kovan",
+  31337: "Hardhat - Dev",
 };
 
 export const injected = new InjectedConnector({
@@ -23,7 +23,8 @@ export const injected = new InjectedConnector({
     3, // Ropsten
     4, // Rinkeby
     5, // Goerli
-    42, // Kovan],
+    42, // Kovan]
+    31337, // Hardhat - Dev
   ],
 });
 
