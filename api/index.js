@@ -131,8 +131,14 @@ app.post("/create-nft", async (req, res) => {
       description: req.fields["nft.description"],
     },
   };
-  // pass upload data back to client to store in polygon blockchain
-  return res.status(201).json(payload);
+  console.log(payload);
+  let ipfsMetaUpload = await ipfs.add(JSON.stringify(payload));
+  // console.log("UPLOAD: ", ipfsMetaUpload);
+  // // const meta_url = `https://ipfs.infura.io/ipfs/${ipfsMetaUpload.path}`;
+  // // console.log("IPFS METAUPLOAD: ", ipfsMetaUpload);
+  // // pass upload data back to client to store in polygon blockchain
+  return res.status(201).json(ipfsMetaUpload);
+  // return res.status(201);
 });
 
 const createSale = async (url, signer) => {

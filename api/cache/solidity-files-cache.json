@@ -535,8 +535,8 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/NFT.sol": {
-      "lastModificationDate": 1635899659335,
-      "contentHash": "8773e807998242500ab3dad6755dd6c6",
+      "lastModificationDate": 1636157429965,
+      "contentHash": "13c92b7437b4efac20059df4fd8a32f7",
       "sourceName": "contracts/NFT.sol",
       "solcConfig": {
         "version": "0.8.3",
