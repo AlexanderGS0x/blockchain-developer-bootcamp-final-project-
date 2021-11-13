@@ -428,8 +428,8 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/Market.sol": {
-      "lastModificationDate": 1635655280308,
-      "contentHash": "de0049a07bd6f9a1cc53dfdff0c68d96",
+      "lastModificationDate": 1636771536076,
+      "contentHash": "fdd668da0389888e535a8878481bf51a",
       "sourceName": "contracts/Market.sol",
       "solcConfig": {
         "version": "0.8.3",

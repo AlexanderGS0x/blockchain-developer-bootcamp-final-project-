@@ -9,8 +9,6 @@ import { FileMetaCard } from "./FileMetaCard";
 export const NFTCreationPanel = () => {
   const NFTCreationForm = useForm({
     onSubmit: async (values) => {
-      console.log("Values: ", values);
-
       // first upload asset to ipfs:
       let data = new FormData();
       data.append("nft.asset", values.nft_asset);
@@ -24,16 +22,6 @@ export const NFTCreationPanel = () => {
       });
       const ipfsJsonResponse = await ipfsResponse.json();
 
-      console.log("IPFS JSON RESPONSE: ", ipfsJsonResponse);
-
-      const ipfsMeta = await fetch(
-        `https://ipfs.infura.io/ipfs/${ipfsJsonResponse.path}`
-      );
-
-      const nftPayload = await ipfsMeta.json();
-
-      const { asset_url, metadata } = nftPayload;
-      console.log({ asset_url, metadata });
       // // sign transaction in metamask:
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();

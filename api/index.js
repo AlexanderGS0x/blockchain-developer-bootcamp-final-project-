@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { create } = require("ipfs-http-client");
 const express = require("express");
+const bodyParser = require("body-parser");
 const formidableMiddleware = require("express-formidable");
 const cors = require("cors");
 const fs = require("fs");
@@ -8,7 +9,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(formidableMiddleware());
+// parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+// app.use(bodyParser.json());
+// app.use(formidableMiddleware());
 
 const nftMarketABI = require("./artifacts/contracts/Market.sol/NFTMarket.json");
 const nftMintABI = require("./artifacts/contracts/NFT.sol/NFT.json");
@@ -85,8 +90,10 @@ app.get("/load-nfts", async (req, res) => {
 });
 
 app.post("/buy-nft", async (req, res) => {
-  const nft = req.body.nft;
-  const signer = req.body.signer;
+  // console.log(req.fields); // contains non-file fields
+  console.log("BUY NFT ON SERVER: ", req.body);
+  // const nft = req.body.nft;
+  // const signer = req.body.signer;
 
   /* 79-82 needs the user to sign the transaction, so will use Web3Provider and sign it */
   /* this will need to be done on the client */
@@ -96,17 +103,18 @@ app.post("/buy-nft", async (req, res) => {
   // const signer = provider.getSigner();
 
   // pass signed from api
-  const contract = new ethers.Contract(nftmarketaddress, Market.abi, signer);
+  // const contract = new ethers.Contract(nftmarketaddress, Market.abi, signer);
 
   /* user will be prompted to pay the asking proces to complete the transaction */
-  const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
-  const transaction = await contract.createMarketSale(nftaddress, nft.tokenId, {
-    value: price,
-  });
+  // const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
+  // const transaction = await contract.createMarketSale(nftaddress, nft.tokenId, {
+  //   value: price,
+  // });
 
-  return await transaction.wait();
+  // return await transaction.wait();
   // after request, we will need to reload nfts on client...refactor to maybe use react query?
   // might be able to use a subgraph query here
+  res.json({ success: true });
 });
 
 // upload file to ipfs, then create nft on blockchain
