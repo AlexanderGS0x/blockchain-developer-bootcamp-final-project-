@@ -140,6 +140,8 @@ contract NFTMarket is ReentrancyGuard {
             }
         }
 
+        console.log("this", itemCount);
+
         MarketItem[] memory items = new MarketItem[](itemCount);
         for (uint256 i = 0; i < totalItemCount; i++) {
             if (idToMarketItem[i + 1].owner == msg.sender) {

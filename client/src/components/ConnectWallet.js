@@ -36,12 +36,13 @@ export const ConnectWallet = () => {
 
   // request access to the user's MetaMask account
   async function connect() {
+    console.log("SANITY");
     try {
       const account = await activate(injected);
       console.log("ACCOUNT: ", account);
       console.log(account);
     } catch (ex) {
-      console.log(ex);
+      console.log("EXCEPTION: ", ex);
     }
   }
 
