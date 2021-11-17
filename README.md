@@ -1,4 +1,4 @@
-# BootstrapNFT - A Full-stack NFT factory [React client, Express api, Solidity]
+# BootstrapNFT - A Full-stack NFT factory [React, Express, Solidity]
 ### 🚧 This repo is under construction 🚧
 
 This project scaffolds a full stack Web2/Web3 integration.
