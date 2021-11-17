@@ -1,4 +1,4 @@
-# BootstrapNFT - A Full-stack NFT factory [React client, Express api, Solidity]
+# BootstrapNFT - A Full-stack NFT factory [React, Express, Solidity]
 ### 🚧 This repo is under construction 🚧
 
 This project scaffolds a full stack Web2/Web3 integration.
@@ -11,7 +11,7 @@ This spins up a distributed "marketplace", that essentially acts as a CRUD app w
 
 Schedule an air-drop of `registration_notice` to each of the wallets that purchased and owns an NFT. Imagine if this were a shopify marketplace code, or tickets to a festival.
 
-Users will interact with a Web2 client (React), that will display the metadata for all available car NFTs for sale. These metadata are associated to a car NFT on the blockchain (information about the car, file with generative car title [TODO] (art nft embed?).
+Users will interact with a Web2 client (React), that will display the metadata for all available car NFTs for sale. These metadata are associated to a car NFT on the blockchain (information about the car, file with generative car title [TODO].
 
 Web client will interact with a Web2 API (Express) that will handle all the secrets, and will interact with the blockchain directly via smart contract abi (hardhat). Must be further secured, but might be useful for handling things like email, chat, and push notifications.
 
