@@ -58,5 +58,3 @@ TODO:
 * Tests...
 * Airdrop
 * Terraform?
-
-[Getting Started](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/edit/main/DOCS.md)
