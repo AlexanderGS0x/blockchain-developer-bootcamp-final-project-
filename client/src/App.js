@@ -6,7 +6,7 @@ import { Web3ReactProvider } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { Web3Provider } from "@ethersproject/providers";
 
-import { AppSidebar } from "./containers/AppSidebar";
+import { AppRouter } from "./containers/AppRouter";
 
 export const SUPPORTED_CHAINS = {
   1: "Mainnet",
@@ -37,9 +37,7 @@ function getLibrary(provider) {
 function App() {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <div className="app-wrapper">
-        <AppSidebar />
-      </div>
+      <AppRouter />
     </Web3ReactProvider>
   );
 }

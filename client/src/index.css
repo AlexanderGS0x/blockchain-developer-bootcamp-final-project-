@@ -1,18 +1,20 @@
 body {
   margin: 0;
-  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-family: "Space Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background: #1a1b26; */
+  /* height: 100%; */
 }
 
-.app-wrapper {
+/* .app-wrapper {
   display: grid;
   grid-template-columns: 250px 1fr;
-}
+} */
 
 .app-sidebar {
   height: 100%;
-  border-right: solid #d3d3d3 1px;
+  border-right: solid #cfc9c2 1px;
 }
 
 .app-header {
@@ -22,13 +24,13 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   height: 75px;
-  border-bottom: solid #d3d3d3 1px;
+  border-bottom: solid #cfc9c2 1px;
+  font-family: "Space Mono", monospace;
 }
 
 .app-main {
   height: 100%;
   width: 100%;
-  background-color: #fffffd;
 }
 
 /* marketplace */
@@ -41,7 +43,7 @@ body {
 }
 
 .grid-item {
-  outline: solid #d3d3d3 1px;
+  outline: solid #cfc9c2 1px;
   height: 350px;
 }
 
@@ -71,8 +73,14 @@ body {
 /* dashboard */
 
 .dashboard-grid {
+  /* display: flex; */
+  flex: 1;
+  height: 100%;
   display: grid;
-  grid-template-rows: 100px 500px auto;
+  /* flex-direction: column; */
+  grid-template-rows: 250px 1fr;
+  border: solid white 2px;
+  /* background: white; */
 }
 
 .dashboard-grid__row-top {
@@ -85,13 +93,14 @@ body {
 }
 
 .dashboard-grid__row-top--grid-item {
-  height: 100%;
-  outline: solid #d3d3d3 1px;
+  /* outline: solid #cfc9c2 1px; */
+  background-color: #1a1b26;
 }
 
 .dashboard-grid__row-middle {
   display: grid;
   margin: 20px;
+  grid-template-rows: 1fr 100px;
 }
 
 .dashboard-grid__row-middle-content-area {
@@ -105,9 +114,10 @@ body {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr 25px;
+  grid-template-rows: 1fr 40px;
   border: solid #d3d3d3 1px;
   border-radius: 3px;
+  background-color: #1a1b26 !important;
 }
 
 .dashboard-grid__row-middle--grid-item-content {
@@ -126,7 +136,6 @@ body {
 
 .dashboard-grid__row-middle--grid-item-footer {
   display: grid;
-  grid-gap: 15px;
 }
 
 .dashboard-grid__row-middle--grid-item--icon {
@@ -160,6 +169,23 @@ body {
   width: 1rem;
   border-radius: 1.125rem;
   background-color: black;
+}
+
+.bp3-file-upload-input {
+  background: #24283b !important;
+  color: #cfc9c2 !important;
+  font-family: "Space Mono", monospace !important;
+  line-height: 30px !important;
+  height: 40px !important;
+  padding: 5px !important;
+  padding-left: 10px !important;
+}
+
+.bp3-file-upload-input::after {
+  background: #b4f9f8 !important;
+  padding: 5px !important;
+  padding-right: 10px !important;
+  width: 100px !important;
 }
 
 /* welcome page */

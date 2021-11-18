@@ -6,26 +6,32 @@ import { Dashboard } from "./Dashboard";
 import { AppHeader } from "./AppHeader";
 import { Welcome } from "./Welcome";
 
+import { useTheme } from "../hooks/useTheme";
+
 export const AppMain = () => {
+  const { theme } = useTheme();
   return (
     <Switch>
       <Route exact path="/">
         <Welcome />
       </Route>
       <Route path="/marketplace">
-        <div>
-          <AppHeader title="Marketplace" />
-          <div className="app-main">
-            <Marketplace />
-          </div>
-        </div>
+        {/* <AppHeader title="Marketplace" />
+        <div className="app-main">
+          <Marketplace />
+        </div> */}
       </Route>
       <Route path="/dashboard">
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            background: theme.background,
+            minHeight: "100vh",
+          }}
+        >
           <AppHeader title="Dashboard" />
-          <div className="app-main">
-            <Dashboard />
-          </div>
+          <Dashboard />
         </div>
       </Route>
     </Switch>

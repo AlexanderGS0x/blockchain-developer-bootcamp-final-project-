@@ -1,9 +1,37 @@
 import { ConnectWallet } from "../components/ConnectWallet";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import { useTheme } from "../hooks/useTheme";
 
 export const AppHeader = ({ title }) => {
+  const { theme } = useTheme();
   return (
     <div className="app-header">
-      <h2>{title}</h2>
+      <div style={{ display: "flex" }}>
+        <h2 style={{ marginRight: 10 }}>
+          <Link
+            to="/dashboard"
+            style={{
+              color: `${
+                title === "Dashboard" ? theme.textActive : theme.textBase
+              }`,
+            }}
+          >
+            Dashboard
+          </Link>
+        </h2>
+        <h2 style={{ marginRight: 10 }}>
+          <Link
+            to="/marketplace"
+            style={{
+              color: `${
+                title === "Marketplace" ? theme.textActive : theme.textBase
+              }`,
+            }}
+          >
+            Marketplace
+          </Link>
+        </h2>
+      </div>
       {/* <button onClick={deployContract}>Deploy</button>
         <button onClick={logProviderAccount}>Log Provider</button>
         <button onClick={requestAccount}>Connect Metamask Wallet</button> */}

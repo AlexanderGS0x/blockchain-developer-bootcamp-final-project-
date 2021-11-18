@@ -78,7 +78,7 @@ export const NFTCreationPanel = () => {
 
   return (
     <NFTCreationForm.Form className="dashboard-grid__row-middle">
-      <h2>Create your NFT</h2>
+      {/* <h2>Create your NFT</h2> */}
       <div className="dashboard-grid__row-middle-content-area">
         <FileInputCard />
         <FileMetaCard />
