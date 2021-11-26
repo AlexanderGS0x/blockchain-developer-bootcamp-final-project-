@@ -46,17 +46,20 @@ export const MyNftGrid = () => {
     } = jsonMarketContractResponse;
 
     // /* create a generic provider and query for unsold market items */
-    const provider = new ethers.providers.JsonRpcProvider();
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
 
     const nftContract = new ethers.Contract(
       nftMintAddress,
       nftMintContract.abi,
-      provider
+      signer
     );
     const marketContract = new ethers.Contract(
       nftMarketAddress,
       nftMarketContract.abi,
-      provider
+      signer
     );
 
     const data = await marketContract.fetchMyNFTs();
@@ -82,11 +85,26 @@ export const MyNftGrid = () => {
 
     setMyNFTs(items);
   }
-  console.log(myNFTs);
+
   return (
     <div className="dashboard-grid__row-bottom">
       {myNFTs.map((item) => {
-        return <div className="grid-item">1</div>;
+        return (
+          <div className="grid-item" id={item.tokenId}>
+            <div className="header">
+              <img src={item.url} alt={item.title} />
+            </div>
+            <div className="footer">
+              <div className="info">
+                <h3>{item.title}</h3>
+                <p>{item.price}</p>
+              </div>
+              <div className="price">
+                <button onClick={() => console.log("relist")}>reslist</button>
+              </div>
+            </div>
+          </div>
+        );
       })}
     </div>
   );
