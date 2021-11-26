@@ -205,6 +205,7 @@ contract NFTMarket is ReentrancyGuard {
         idToMarketItem[tokenId].sold = false; // set nft seller (metadata) to sold
         _itemsSold.decrement(); // increment amount of items sold in marketplace. used for global dApp state
 
+        console.log("ITEMS SOLD: ", _itemsSold.current());
         // transfer ownership from nft creator to the marketplace. "escrow", so to speak.
         // IERC721(nftContract).transferFrom(msg.sender, address(this), tokenId);
 
