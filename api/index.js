@@ -13,7 +13,7 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 // app.use(bodyParser.json());
-// app.use(formidableMiddleware());
+app.use(formidableMiddleware());
 
 const nftMarketABI = require("./artifacts/contracts/Market.sol/NFTMarket.json");
 const nftMintABI = require("./artifacts/contracts/NFT.sol/NFT.json");
