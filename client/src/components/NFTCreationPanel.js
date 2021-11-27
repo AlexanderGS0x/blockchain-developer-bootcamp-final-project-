@@ -59,7 +59,10 @@ export const NFTCreationPanel = () => {
       let event = tx.events[0];
       let value = event.args[2];
       let tokenId = value.toNumber(); // a new NFT has been created!
-      const price = ethers.utils.parseUnits("1.5", "ether");
+      const price = ethers.utils.parseUnits(
+        values.nft_price.toString(),
+        "ether"
+      );
 
       // // Post item to marketplace
       let listingPrice = await marketContract.getListingPrice();
