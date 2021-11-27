@@ -199,9 +199,7 @@ contract NFTMarket is ReentrancyGuard {
 
         // // //
 
-        idToMarketItem[tokenId].owner = payable(
-            IERC721(nftContract).ownerOf(tokenId)
-        ); // set nft buyer (metadata) as new owner of nft
+        idToMarketItem[tokenId].owner = payable(address(0)); // set nft buyer (metadata) as new owner of nft
         idToMarketItem[tokenId].sold = false; // set nft seller (metadata) to sold
         _itemsSold.decrement(); // increment amount of items sold in marketplace. used for global dApp state
 
