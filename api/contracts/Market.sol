@@ -99,6 +99,7 @@ contract NFTMarket is ReentrancyGuard {
     {
         uint256 price = idToMarketItem[itemId].price;
         uint256 tokenId = idToMarketItem[itemId].tokenId;
+        console.log("PRICE: ", price);
         require(
             msg.value == price,
             "Please submit the asking price in order to complete the purchase"

@@ -39,9 +39,7 @@ export const Marketplace = () => {
 
     const items = await Promise.all(
       data.map(async (i) => {
-        console.log("tokenID: ", i.tokenId);
         const tokenUri = await nftContract.tokenURI(i.tokenId);
-        console.log("tokenURI: ", tokenUri);
         const meta = await fetch(tokenUri);
         const jsonMeta = await meta.json();
         // let price = ethers.utils.formatUnits(i.price.toString(), "ether");
@@ -98,7 +96,7 @@ export const NFTCard = ({ nft, src, title, price, tokenId, description }) => {
       signer
     );
 
-    const price = ethers.utils.parseUnits("1.5", "ether");
+    const price = ethers.utils.parseUnits(nft.price, "ether");
     const transaction = await contract.createMarketSale(
       nftMintAddress,
       nft.tokenId,
