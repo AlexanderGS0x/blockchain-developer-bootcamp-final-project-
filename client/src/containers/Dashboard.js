@@ -64,8 +64,6 @@ export const MyNftGrid = () => {
 
     const data = await marketContract.fetchMyNFTs();
 
-    console.log("DATA: ", data);
-
     const items = await Promise.all(
       data.map(async (i) => {
         const tokenUri = await nftContract.tokenURI(i.tokenId);
@@ -86,6 +84,56 @@ export const MyNftGrid = () => {
     setMyNFTs(items);
   }
 
+  const relistNFT = async (tokenId) => {
+    const response = await fetch("http://localhost:8080/get-market-contract");
+    const jsonMarketContractResponse = await response.json();
+
+    const {
+      nftMarketAddress,
+      nftMarketContract,
+      nftMintAddress,
+      nftMintContract,
+    } = jsonMarketContractResponse;
+
+    // /* create a generic provider and query for unsold market items */
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const nftContract = new ethers.Contract(
+      nftMintAddress,
+      nftMintContract.abi,
+      signer
+    );
+    const marketContract = new ethers.Contract(
+      nftMarketAddress,
+      nftMarketContract.abi,
+      signer
+    );
+
+    // Reslist item to marketplace
+    // const txRelistNFT = await marketContract.relistItem(
+    //   signer.getAddress(),
+    //   nftMintAddress,
+    //   tokenId
+    // );
+    // await relistNFTResponse.wait();
+    // console.log("relistNFTResponse: ", relistNFTResponse);
+
+    let txTransferNFT = await nftContract.transferFrom(
+      signer.getAddress(),
+      nftMarketAddress,
+      tokenId
+      // price,
+      // { value: listingPrice }
+    );
+    await txTransferNFT.wait();
+
+    const logOwner = await marketContract.relistItem(nftMintAddress, tokenId);
+    await logOwner.wait();
+  };
+
   return (
     <div className="dashboard-grid__row-bottom">
       {myNFTs.map((item) => {
@@ -100,7 +148,7 @@ export const MyNftGrid = () => {
                 <p>{item.price}</p>
               </div>
               <div className="price">
-                <button onClick={() => console.log("relist")}>reslist</button>
+                <button onClick={() => relistNFT(item.tokenId)}>reslist</button>
               </div>
             </div>
           </div>
