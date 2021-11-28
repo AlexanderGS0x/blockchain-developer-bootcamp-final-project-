@@ -60,7 +60,7 @@ export const MyNftGrid = () => {
   }
 
   const relistNFT = async (tokenId) => {
-    const { nftContract, marketContract, marketAddress, nftAddress } =
+    const { nftContract, marketContract, marketAddress } =
       await getSignedContracts();
 
     let txTransferNFT = await nftContract.transferFrom(
@@ -70,7 +70,7 @@ export const MyNftGrid = () => {
     );
     await txTransferNFT.wait();
 
-    const txRelistNFT = await marketContract.relistItem(nftAddress, tokenId);
+    const txRelistNFT = await marketContract.relistItem(tokenId);
     await txRelistNFT.wait();
   };
 

@@ -13,12 +13,6 @@ contract NFTMarket is ReentrancyGuard {
     Counters.Counter private _itemIds;
     Counters.Counter private _itemsSold;
 
-    address payable owner;
-
-    constructor() {
-        owner = payable(msg.sender);
-    }
-
     struct MarketItem {
         uint256 itemId;
         address nftContract;
@@ -40,11 +34,6 @@ contract NFTMarket is ReentrancyGuard {
         uint256 price,
         bool sold
     );
-
-    /* Returns the listing price of the contract */
-    function getListingPrice() public view returns (uint256) {
-        return listingPrice;
-    }
 
     /* Places an item for sale on the marketplace */
     function createMarketItem(
@@ -170,11 +159,7 @@ contract NFTMarket is ReentrancyGuard {
     }
 
     /* to_do */
-    function relistItem(address nftContract, uint256 tokenId)
-        public
-        payable
-        nonReentrant
-    {
+    function relistItem(uint256 tokenId) public payable nonReentrant {
         idToMarketItem[tokenId].owner = payable(address(0));
         idToMarketItem[tokenId].sold = false;
         idToMarketItem[tokenId].seller = payable(msg.sender);
