@@ -1,11 +1,10 @@
 import "../index.css";
 import { useState, useEffect } from "react";
-import { ethers } from "ethers";
 import "../index.css";
 
-import Web3Modal from "web3modal";
-
 import { NFTCreationPanel } from "../components/NFTCreationPanel";
+import { getSignedContracts } from "../utils/getSignedContracts";
+import { useWalletContext } from "../hooks/useWalletContext";
 
 export const Dashboard = () => {
   return (
@@ -29,39 +28,14 @@ export const Dashboard = () => {
 };
 
 export const MyNftGrid = () => {
+  const { signer } = useWalletContext();
   const [myNFTs, setMyNFTs] = useState([]);
   useEffect(() => {
     loadNFTs();
   }, []);
 
   async function loadNFTs() {
-    const response = await fetch("http://localhost:8080/get-market-contract");
-    const jsonMarketContractResponse = await response.json();
-
-    const {
-      nftMarketAddress,
-      nftMarketContract,
-      nftMintAddress,
-      nftMintContract,
-    } = jsonMarketContractResponse;
-
-    // /* create a generic provider and query for unsold market items */
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-
-    const nftContract = new ethers.Contract(
-      nftMintAddress,
-      nftMintContract.abi,
-      signer
-    );
-    const marketContract = new ethers.Contract(
-      nftMarketAddress,
-      nftMarketContract.abi,
-      signer
-    );
-
+    const { nftContract, marketContract } = await getSignedContracts();
     const data = await marketContract.fetchMyNFTs();
 
     const items = await Promise.all(
@@ -85,52 +59,19 @@ export const MyNftGrid = () => {
   }
 
   const relistNFT = async (tokenId) => {
-    const response = await fetch("http://localhost:8080/get-market-contract");
-    const jsonMarketContractResponse = await response.json();
-
-    const {
-      nftMarketAddress,
-      nftMarketContract,
-      nftMintAddress,
-      nftMintContract,
-    } = jsonMarketContractResponse;
-
-    // /* create a generic provider and query for unsold market items */
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-
-    const nftContract = new ethers.Contract(
-      nftMintAddress,
-      nftMintContract.abi,
-      signer
-    );
-    const marketContract = new ethers.Contract(
-      nftMarketAddress,
-      nftMarketContract.abi,
-      signer
-    );
-
-    // Reslist item to marketplace
-    // const txRelistNFT = await marketContract.relistItem(
-    //   signer.getAddress(),
-    //   nftMintAddress,
-    //   tokenId
-    // );
-    // await relistNFTResponse.wait();
-    // console.log("relistNFTResponse: ", relistNFTResponse);
+    const { nftContract, marketContract, marketAddress, nftAddress } =
+      await getSignedContracts();
 
     let txTransferNFT = await nftContract.transferFrom(
       signer.getAddress(),
-      nftMarketAddress,
+      marketAddress,
       tokenId
       // price,
       // { value: listingPrice }
     );
     await txTransferNFT.wait();
 
-    const logOwner = await marketContract.relistItem(nftMintAddress, tokenId);
+    const logOwner = await marketContract.relistItem(nftAddress, tokenId);
     await logOwner.wait();
   };
 
