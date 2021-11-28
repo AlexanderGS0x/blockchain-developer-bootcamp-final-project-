@@ -1,7 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-/* test/sample-test.js */
 describe("NFTMarket", function () {
   it("CreateMarketItem should transfer ownership of NFT to marketplace address", async function () {
     /* deploy the marketplace */
@@ -28,7 +27,6 @@ describe("NFTMarket", function () {
   });
 });
 
-/* test/sample-test.js */
 describe("NFTMarket", function () {
   it("CreateMarketSale should transfer ownership of NFT to buyer address", async function () {
     /* deploy the marketplace contract */
@@ -63,7 +61,6 @@ describe("NFTMarket", function () {
   });
 });
 
-/* test/sample-test.js */
 describe("NFTMarket", function () {
   it("Relist should transfer ownership of NFT to market address", async function () {
     /* deploy the marketplace contract */
@@ -103,7 +100,6 @@ describe("NFTMarket", function () {
   });
 });
 
-/* test/sample-test.js */
 describe("NFTMarket", function () {
   it("fetchMarketItemCount should return all marketplace items that are for sale", async function () {
     /* deploy the marketplace */
@@ -148,7 +144,6 @@ describe("NFTMarket", function () {
   });
 });
 
-/* test/sample-test.js */
 describe("NFTMarket", function () {
   it("fetchOwnedNFTCount should return all marketplace items that were purshased by user address", async function () {
     /* deploy the marketplace */
