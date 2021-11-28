@@ -35,6 +35,25 @@ contract NFTMarket is ReentrancyGuard {
         bool sold
     );
 
+    /* Query how many nfts are for sale */
+    function fetchMarketItemCount() public view returns (uint256) {
+        uint256 unsoldItemCount = _itemIds.current() - _itemsSold.current();
+        return unsoldItemCount;
+    }
+
+    /* Query how many nfts user owns */
+    function fetchOwnedNFTCount() public view returns (uint256) {
+        uint256 totalItemCount = _itemIds.current();
+        uint256 itemCount = 0;
+
+        for (uint256 i = 0; i < totalItemCount; i++) {
+            if (idToMarketItem[i + 1].owner == msg.sender) {
+                itemCount += 1;
+            }
+        }
+        return itemCount;
+    }
+
     /* Places an item for sale on the marketplace */
     function createMarketItem(
         address nftContract,
@@ -158,7 +177,6 @@ contract NFTMarket is ReentrancyGuard {
         return items;
     }
 
-    /* to_do */
     function relistItem(uint256 tokenId) public payable nonReentrant {
         idToMarketItem[tokenId].owner = payable(address(0));
         idToMarketItem[tokenId].sold = false;
