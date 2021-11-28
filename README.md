@@ -51,10 +51,5 @@ Chain Support:
 
 TODO:
 
-* Create custom `useWalletSigner` hook to abstract, and consolidate logic.
-* Finalize `relist` Solidity function
 * Integrate Chainlink oracle to generate randomness. Resource: [Chromata](https://www.michaelbromley.co.uk/experiments/chromata/). This would be great to have a designer for :)
-* Refactor to use The Graph
-* Tests...
-* Airdrop
-* Terraform?
+* Tests
