@@ -158,7 +158,6 @@ contract NFTMarket is ReentrancyGuard {
         return items;
     }
 
-    /* to_do */
     function relistItem(uint256 tokenId) public payable nonReentrant {
         idToMarketItem[tokenId].owner = payable(address(0));
         idToMarketItem[tokenId].sold = false;
