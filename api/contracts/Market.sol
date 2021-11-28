@@ -72,9 +72,6 @@ contract NFTMarket is ReentrancyGuard {
             false
         );
 
-        console.log(IERC721(nftContract).ownerOf(tokenId));
-        console.log(msg.sender);
-
         // transfer ownership from nft creator to the marketplace. "escrow", so to speak.
         IERC721(nftContract).transferFrom(msg.sender, address(this), tokenId);
 
@@ -105,16 +102,12 @@ contract NFTMarket is ReentrancyGuard {
             "Please submit the asking price in order to complete the purchase"
         );
 
-        console.log(IERC721(nftContract).ownerOf(tokenId));
-        console.log(msg.sender);
-
-        idToMarketItem[itemId].seller.transfer(msg.value); // sends value to seller. this is the marketplace at this point.
-        // IERC721(nftContract).approve(msg.sender, tokenId);
-        IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId); // transfers ownership of nft to buyer
-        idToMarketItem[itemId].owner = payable(msg.sender); // set nft buyer (metadata) as new owner of nft
-        idToMarketItem[itemId].sold = true; // set nft seller (metadata) to sold
-        _itemsSold.increment(); // increment amount of items sold in marketplace. used for global dApp state
-        payable(owner).transfer(listingPrice); // transfer funds to owner of nft (creator at first)
+        idToMarketItem[itemId].seller.transfer(msg.value);
+        IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
+        idToMarketItem[itemId].owner = payable(msg.sender);
+        idToMarketItem[itemId].sold = true;
+        _itemsSold.increment();
+        // payable(owner).transfer(listingPrice); // transfer funds to owner of nft (creator at first)....broken
     }
 
     /* Returns all unsold market items */
@@ -123,10 +116,6 @@ contract NFTMarket is ReentrancyGuard {
         uint256 unsoldItemCount = _itemIds.current() - _itemsSold.current();
         uint256 currentIndex = 0;
 
-        console.log("ITEM COUNT: ", itemCount);
-        console.log("UNSOLD ITEM COUNT: ", unsoldItemCount);
-
-        // all nft's are stored in the marketplace. loop through them and return all with a "false" boolan flag
         MarketItem[] memory items = new MarketItem[](unsoldItemCount);
         for (uint256 i = 0; i < itemCount; i++) {
             if (idToMarketItem[i + 1].owner == address(0)) {
@@ -150,8 +139,6 @@ contract NFTMarket is ReentrancyGuard {
                 itemCount += 1;
             }
         }
-
-        console.log("this", itemCount);
 
         MarketItem[] memory items = new MarketItem[](itemCount);
         for (uint256 i = 0; i < totalItemCount; i++) {
@@ -190,24 +177,18 @@ contract NFTMarket is ReentrancyGuard {
     }
 
     /* to_do */
-    function relistItem(
-        // address signer,
-        address nftContract,
-        uint256 tokenId
-    ) public payable nonReentrant {
+    function relistItem(address nftContract, uint256 tokenId)
+        public
+        payable
+        nonReentrant
+    {
+        // debug:
         console.log(IERC721(nftContract).ownerOf(tokenId));
         console.log(msg.sender);
 
-        // // //
-
-        idToMarketItem[tokenId].owner = payable(address(0)); // set nft buyer (metadata) as new owner of nft
-        idToMarketItem[tokenId].sold = false; // set nft seller (metadata) to sold
-        _itemsSold.decrement(); // increment amount of items sold in marketplace. used for global dApp state
-
-        console.log("ITEMS SOLD: ", _itemsSold.current());
-        // transfer ownership from nft creator to the marketplace. "escrow", so to speak.
-        // IERC721(nftContract).transferFrom(msg.sender, address(this), tokenId);
-
-        // let dapp know that the item was created
+        idToMarketItem[tokenId].owner = payable(address(0));
+        idToMarketItem[tokenId].sold = false;
+        idToMarketItem[tokenId].seller = payable(msg.sender);
+        _itemsSold.decrement();
     }
 }
