@@ -5,6 +5,7 @@ import "../index.css";
 import { NFTCreationPanel } from "../components/NFTCreationPanel";
 import { getSignedContracts } from "../utils/getSignedContracts";
 import { useWalletContext } from "../hooks/useWalletContext";
+import { NFTCard } from "../components/NFTCard";
 
 export const Dashboard = () => {
   return (
@@ -66,33 +67,22 @@ export const MyNftGrid = () => {
       signer.getAddress(),
       marketAddress,
       tokenId
-      // price,
-      // { value: listingPrice }
     );
     await txTransferNFT.wait();
 
-    const logOwner = await marketContract.relistItem(nftAddress, tokenId);
-    await logOwner.wait();
+    const txRelistNFT = await marketContract.relistItem(nftAddress, tokenId);
+    await txRelistNFT.wait();
   };
 
   return (
     <div className="dashboard-grid__row-bottom">
       {myNFTs.map((item) => {
         return (
-          <div className="grid-item" id={item.tokenId}>
-            <div className="header">
-              <img src={item.url} alt={item.title} />
+          <NFTCard item={item}>
+            <div className="price">
+              <button onClick={() => relistNFT(item.tokenId)}>reslist</button>
             </div>
-            <div className="footer">
-              <div className="info">
-                <h3>{item.title}</h3>
-                <p>{item.price}</p>
-              </div>
-              <div className="price">
-                <button onClick={() => relistNFT(item.tokenId)}>reslist</button>
-              </div>
-            </div>
-          </div>
+          </NFTCard>
         );
       })}
     </div>
