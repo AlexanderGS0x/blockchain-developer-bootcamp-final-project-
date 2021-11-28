@@ -11,44 +11,80 @@ const ContractsProvider = ({ children }) => {
   const [nftContract, setNftContract] = useState(null);
   const [nftAddress, setNftAddress] = useState(null);
 
-  useEffect(() => {
-    const getContracts = async () => {
-      const response = await fetch("http://localhost:8080/get-market-contract");
-      const jsonMarketContractResponse = await response.json();
+  // useEffect(() => {
+  //   const getContracts = async () => {
+  //     const response = await fetch("http://localhost:8080/get-market-contract");
+  //     const jsonMarketContractResponse = await response.json();
 
-      const {
-        nftMarketAddress,
-        nftMarketContract,
-        nftMintAddress,
-        nftMintContract,
-      } = jsonMarketContractResponse;
+  //     const {
+  //       nftMarketAddress,
+  //       nftMarketContract,
+  //       nftMintAddress,
+  //       nftMintContract,
+  //     } = jsonMarketContractResponse;
 
-      setMarketAddress(nftMarketAddress);
-      setNftAddress(nftMintAddress);
+  //     setMarketAddress(nftMarketAddress);
+  //     setNftAddress(nftMintAddress);
 
-      const marketContractInstance = new ethers.Contract(
-        nftMarketAddress,
-        nftMarketContract.abi,
-        signer
-      );
+  //     const marketContractInstance = new ethers.Contract(
+  //       nftMarketAddress,
+  //       nftMarketContract.abi,
+  //       signer
+  //     );
 
-      const nftContractInstance = new ethers.Contract(
-        nftMintAddress,
-        nftMintContract.abi,
-        signer
-      );
+  //     const nftContractInstance = new ethers.Contract(
+  //       nftMintAddress,
+  //       nftMintContract.abi,
+  //       signer
+  //     );
 
-      setMarketContract(marketContractInstance);
-      setNftContract(nftContractInstance);
-    };
-    if (!marketContract || !nftContract) {
-      getContracts();
-    }
-  }, [marketContract, nftContract, signer]);
+  //     setMarketContract(marketContractInstance);
+  //     setNftContract(nftContractInstance);
+  //   };
+  //   if (!marketContract || !nftContract) {
+  //     getContracts();
+  //   }
+  // }, [marketContract, nftContract, signer]);
+
+  const initializeApplicationContracts = async () => {
+    const response = await fetch("http://localhost:8080/get-market-contract");
+    const jsonMarketContractResponse = await response.json();
+
+    const {
+      nftMarketAddress,
+      nftMarketContract,
+      nftMintAddress,
+      nftMintContract,
+    } = jsonMarketContractResponse;
+
+    setMarketAddress(nftMarketAddress);
+    setNftAddress(nftMintAddress);
+
+    const marketContractInstance = new ethers.Contract(
+      nftMarketAddress,
+      nftMarketContract.abi,
+      signer
+    );
+
+    const nftContractInstance = new ethers.Contract(
+      nftMintAddress,
+      nftMintContract.abi,
+      signer
+    );
+
+    setMarketContract(marketContractInstance);
+    setNftContract(nftContractInstance);
+  };
 
   return (
     <ContractsContext.Provider
-      value={{ marketContract, nftContract, marketAddress, nftAddress }}
+      value={{
+        marketContract,
+        nftContract,
+        marketAddress,
+        nftAddress,
+        initializeApplicationContracts,
+      }}
     >
       {children}
     </ContractsContext.Provider>
