@@ -37,9 +37,7 @@ This dApp will be backed by 2-3 smart contracts
 
 - Web Client: [React](https://reactjs.org/)
 - Web API: [Express](https://expressjs.com/)
-- Blockchain API: [The Graph](https://thegraph.com/en/) [TODO]
 - Blockchain SDK: [Hardhat](https://hardhat.org/)
-- Blockchain Observability: [Alchemy](https://docs.alchemy.com/alchemy/) [TODO]
 - NFT Contract Library: [Open Zeppelin](https://openzeppelin.com/)
 - NFT metadata distro: [IPFS](https://ipfs.io/)
 
