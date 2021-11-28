@@ -3,14 +3,17 @@ import { useForm } from "react-form";
 import { Button } from "@blueprintjs/core";
 import { FileInputCard } from "./FileInputCard";
 import { FileMetaCard } from "./FileMetaCard";
-import { useContractsContext } from "../hooks/useContracts";
 import { createNft } from "../utils/createNft";
 import { createMarketItem } from "../utils/createMarketItem";
+import { getSignedContracts } from "../utils/getSignedContracts";
+import { useWalletContext } from "../hooks/useWalletContext";
 
 export const NFTCreationPanel = () => {
-  const { marketContract, nftContract, nftAddress } = useContractsContext();
+  const { signer } = useWalletContext();
   const NFTCreationForm = useForm({
     onSubmit: async (values) => {
+      const { marketContract, nftContract, nftAddress } =
+        await getSignedContracts(signer);
       let data = new FormData();
 
       data.append("nft.asset", values.nft_asset);

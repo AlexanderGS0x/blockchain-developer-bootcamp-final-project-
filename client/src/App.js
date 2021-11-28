@@ -1,12 +1,10 @@
 import "./index.css";
-import "./App.css";
 import "@blueprintjs/core/lib/css/blueprint.css";
 
 import { Web3ReactProvider } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { Web3Provider } from "@ethersproject/providers";
 import { WalletProvider } from "./context/walletContext";
-import { ContractsProvider } from "./context/contractsContext";
 
 import { AppSidebar } from "./containers/AppSidebar";
 
@@ -40,11 +38,9 @@ function App() {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <WalletProvider>
-        <ContractsProvider>
-          <div className="app-wrapper">
-            <AppSidebar />
-          </div>
-        </ContractsProvider>
+        <div className="app-wrapper">
+          <AppSidebar />
+        </div>
       </WalletProvider>
     </Web3ReactProvider>
   );

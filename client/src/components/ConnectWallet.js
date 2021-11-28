@@ -33,22 +33,13 @@ export const ConnectWallet = () => {
   // you can't "log out" of metamask through a client side app
   // user must log out through their wallet for security concerns. common practice in Defi platforms (see uniswap)
   // this is an ongoing issue with metamask.
-
   // request access to the user's MetaMask account
   async function connect() {
-    console.log("SANITY");
     try {
-      const account = await activate(injected);
-      console.log("ACCOUNT: ", account);
-      console.log(account);
+      await activate(injected);
     } catch (ex) {
       console.log("EXCEPTION: ", ex);
     }
-  }
-
-  async function openWalletModal() {
-    console.log("open wallet modal");
-    // TODO: implement wallet info modal
   }
 
   const slugifyAccount = (account) => {
@@ -75,7 +66,6 @@ export const ConnectWallet = () => {
       <Button
         className="wallet-tag"
         intent="success"
-        onClick={openWalletModal}
         text={slugifyAccount(account)}
         rightIcon={<Identicon />}
       />

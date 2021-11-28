@@ -4,22 +4,6 @@ import { useField } from "react-form";
 import { Card, Icon, FileInput } from "@blueprintjs/core";
 
 export const FileInputCard = () => {
-  // const ImageUploadForm = useForm({
-  //   onSubmit: async (values) => {
-  //     //   setSaving(true);
-  //     let data = new FormData();
-  //     data.append("nft.asset", values.nft_asset);
-  //     // handle api here
-  //     const response = await fetch("http://localhost:8080/create-nft", {
-  //       method: "POST",
-  //       body: data,
-  //     });
-  //     const jsonResponse = await response.json();
-  //     console.log("RESPONSE: ", jsonResponse);
-  //   },
-  //   // debugForm: true,
-  // });
-
   return (
     <Card className="dashboard-grid__row-middle--grid-item" interactive>
       <div className="dashboard-grid__row-middle--grid-item-content">
@@ -49,7 +33,6 @@ const NFTAssetUploadField = forwardRef((props, ref) => {
   const { getInputProps, value, setValue } = NFTAssetUploadFieldInstance;
   const { ref: _ref } = getInputProps({ ref });
 
-  // Build the field
   return (
     <FileInput
       text={fileName || "Upload Image"}

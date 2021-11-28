@@ -3,7 +3,7 @@ import { TextArea } from "@blueprintjs/core";
 
 export const NFTDescriptionInput = () => {
   const {
-    // meta: { error, isTouched },
+    // meta: { error, isTouched }, TODO: add frontend error handling
     getInputProps,
   } = useField("nft_description", {
     validate: validateInput,
