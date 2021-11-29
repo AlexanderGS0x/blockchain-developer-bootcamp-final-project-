@@ -44,7 +44,6 @@ export const MyNftGrid = () => {
         const tokenUri = await nftContract.tokenURI(i.tokenId);
         const meta = await fetch(tokenUri);
         const jsonMeta = await meta.json();
-        // let price = ethers.utils.formatUnits(i.price.toString(), "ether");
         let item = {
           url: jsonMeta.asset_url,
           tokenId: i.tokenId.toNumber(),
@@ -59,19 +58,14 @@ export const MyNftGrid = () => {
     setMyNFTs(items);
   }
 
-  const relistNFT = async (tokenId) => {
-    const { nftContract, marketContract, marketAddress } =
+  const relistNFT = async (nft) => {
+    const { marketContract, marketAddress, nftContract } =
       await getSignedContracts();
 
-    let txTransferNFT = await nftContract.transferFrom(
-      signer.getAddress(),
-      marketAddress,
-      tokenId
-    );
-    await txTransferNFT.wait();
+    const signerAddress = await signer.getAddress();
 
-    const txRelistNFT = await marketContract.relistItem(tokenId);
-    await txRelistNFT.wait();
+    await nftContract.transferToken(signerAddress, marketAddress, nft.tokenId);
+    await marketContract.relistItem(marketAddress, nft.tokenId);
   };
 
   return (
@@ -80,7 +74,7 @@ export const MyNftGrid = () => {
         return (
           <NFTCard item={item}>
             <div className="price">
-              <button onClick={() => relistNFT(item.tokenId)}>reslist</button>
+              <button onClick={() => relistNFT(item)}>relist</button>
             </div>
           </NFTCard>
         );

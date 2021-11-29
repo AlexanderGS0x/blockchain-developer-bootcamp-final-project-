@@ -57,6 +57,8 @@ describe("NFTMarket", function () {
       .connect(buyer)
       .createMarketSale(nftContractAddress, 1, { value: auctionPrice });
 
+    await nft.connect(buyer).transferToken(marketAddress, buyer.address, 1);
+
     expect(await nft.ownerOf(1)).to.equal(buyer.address);
   });
 });
@@ -90,11 +92,11 @@ describe("NFTMarket", function () {
     await market
       .connect(buyer)
       .createMarketSale(nftContractAddress, 1, { value: auctionPrice });
+    await nft.connect(buyer).transferToken(marketAddress, buyer.address, 1);
 
-    await nft.connect(buyer).transferFrom(buyer.address, marketAddress, 1);
-
-    /* reslist token make on the marketplace */
-    await market.connect(buyer).relistItem(1);
+    /* relist token back to marketplace */
+    await nft.connect(buyer).transferToken(buyer.address, marketAddress, 1);
+    await market.connect(buyer).relistItem(nftContractAddress, 1);
 
     expect(await nft.ownerOf(1)).to.equal(marketAddress);
   });

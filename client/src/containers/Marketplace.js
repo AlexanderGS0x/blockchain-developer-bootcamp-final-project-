@@ -5,8 +5,10 @@ import "../index.css";
 import { getMarketContracts } from "../utils/getMarketContracts";
 import { NFTCard } from "../components/NFTCard";
 import { getSignedContracts } from "../utils/getSignedContracts";
+import { useWalletContext } from "../hooks/useWalletContext";
 
 export const Marketplace = () => {
+  const { signer } = useWalletContext();
   const [marketplaceNFTs, setMarketplaceNFTs] = useState([]);
   useEffect(() => {
     loadNFTs();
@@ -36,7 +38,12 @@ export const Marketplace = () => {
   }
 
   const buyNFT = async (nft) => {
-    const { marketContract, nftAddress } = await getSignedContracts();
+    const { marketContract, marketAddress, nftContract, nftAddress } =
+      await getSignedContracts();
+
+    const signerAddress = await signer.getAddress();
+
+    await nftContract.transferToken(marketAddress, signerAddress, nft.tokenId);
 
     const price = ethers.utils.parseUnits(nft.price, "ether");
     const transaction = await marketContract.createMarketSale(

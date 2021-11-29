@@ -13,7 +13,7 @@ app.use(formidableMiddleware());
 const nftMarketABI = require("./artifacts/contracts/Market.sol/NFTMarket.json");
 const nftMintABI = require("./artifacts/contracts/NFT.sol/NFT.json");
 
-const port = process.env.EXPRESS_PORT;
+const port = process.env.PORT;
 const ipfs = create("https://ipfs.infura.io:5001/api/v0");
 
 app.get("/", (req, res) => {

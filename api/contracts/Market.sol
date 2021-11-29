@@ -105,7 +105,7 @@ contract NFTMarket is ReentrancyGuard {
         );
 
         idToMarketItem[itemId].seller.transfer(msg.value);
-        IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
+        // IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
         idToMarketItem[itemId].owner = payable(msg.sender);
         idToMarketItem[itemId].sold = true;
         _itemsSold.increment();
@@ -177,7 +177,12 @@ contract NFTMarket is ReentrancyGuard {
         return items;
     }
 
-    function relistItem(uint256 tokenId) public payable nonReentrant {
+    function relistItem(address nftContract, uint256 tokenId)
+        public
+        payable
+        nonReentrant
+    {
+        // nftContract.transferToken(msg.sender, address(this), tokenId);
         idToMarketItem[tokenId].owner = payable(address(0));
         idToMarketItem[tokenId].sold = false;
         idToMarketItem[tokenId].seller = payable(msg.sender);

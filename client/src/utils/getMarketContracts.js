@@ -3,7 +3,9 @@ import { ethers } from "ethers";
 // intantiates function with JsonRPCProvider
 // these contracts will not need to be signed
 const getMarketContracts = async () => {
-  const response = await fetch("http://localhost:8080/get-market-contract");
+  const response = await fetch(
+    `${process.env.REACT_APP_SERVER_ENDPOINT}/get-market-contract`
+  );
   const jsonMarketContractResponse = await response.json();
 
   const {
@@ -14,7 +16,10 @@ const getMarketContracts = async () => {
   } = jsonMarketContractResponse;
 
   // create a generic provider and query for unsold market items
-  const provider = new ethers.providers.JsonRpcProvider();
+  // const provider = new ethers.providers.JsonRpcProvider();
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://eth-ropsten.alchemyapi.io/v2/9Nz3XKdNuAVhF08SSkmBBR-dk81ui-HI"
+  );
 
   const nftContract = new ethers.Contract(
     nftMintAddress,
