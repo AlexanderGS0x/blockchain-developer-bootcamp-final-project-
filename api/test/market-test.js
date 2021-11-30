@@ -53,9 +53,7 @@ describe("NFTMarket", function () {
     const [_, buyer] = await ethers.getSigners();
 
     /* execute sale of token to another user */
-    await market
-      .connect(buyer)
-      .createMarketSale(nftContractAddress, 1, { value: auctionPrice });
+    await market.connect(buyer).createMarketSale(1, { value: auctionPrice });
 
     await nft.connect(buyer).transferToken(marketAddress, buyer.address, 1);
 
@@ -89,14 +87,14 @@ describe("NFTMarket", function () {
     const [_, buyer] = await ethers.getSigners();
 
     /* execute sale of token to another user */
-    await market
-      .connect(buyer)
-      .createMarketSale(nftContractAddress, 1, { value: auctionPrice });
+    await market.connect(buyer).createMarketSale(1, { value: auctionPrice });
     await nft.connect(buyer).transferToken(marketAddress, buyer.address, 1);
 
     /* relist token back to marketplace */
     await nft.connect(buyer).transferToken(buyer.address, marketAddress, 1);
-    await market.connect(buyer).relistItem(nftContractAddress, 1);
+
+    const resellPrice = ethers.utils.parseUnits("1.5", "ether");
+    await market.connect(buyer).relistItem(resellPrice, 1);
 
     expect(await nft.ownerOf(1)).to.equal(marketAddress);
   });
@@ -174,9 +172,7 @@ describe("NFTMarket", function () {
     const [_, buyer] = await ethers.getSigners();
 
     /* execute sale of a token to buyer */
-    await market
-      .connect(buyer)
-      .createMarketSale(nftContractAddress, 1, { value: auctionPrice });
+    await market.connect(buyer).createMarketSale(1, { value: auctionPrice });
 
     let fetchedCount = await market.connect(buyer).fetchOwnedNFTCount();
     expect(fetchedCount.toNumber()).to.equal(1);
