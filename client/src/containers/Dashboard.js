@@ -1,6 +1,6 @@
 import "../index.css";
 import { useState, useEffect } from "react";
-import "../index.css";
+import { ethers } from "ethers";
 
 import { NFTCreationPanel } from "../components/NFTCreationPanel";
 import { getSignedContracts } from "../utils/getSignedContracts";
@@ -48,7 +48,7 @@ export const MyNftGrid = () => {
           url: jsonMeta.asset_url,
           tokenId: i.tokenId.toNumber(),
           title: jsonMeta.metadata.title,
-          price: jsonMeta.metadata.price,
+          price: ethers.utils.formatEther(i.price.toString()),
           description: jsonMeta.metadata.description,
         };
         return item;
@@ -63,9 +63,10 @@ export const MyNftGrid = () => {
       await getSignedContracts();
 
     const signerAddress = await signer.getAddress();
+    const resellPrice = ethers.utils.parseUnits("0.09", "ether");
 
     await nftContract.transferToken(signerAddress, marketAddress, nft.tokenId);
-    await marketContract.relistItem(marketAddress, nft.tokenId);
+    await marketContract.relistItem(resellPrice, nft.tokenId);
   };
 
   return (

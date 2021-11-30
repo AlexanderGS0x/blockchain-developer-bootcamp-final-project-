@@ -27,18 +27,19 @@ export const Marketplace = () => {
           url: jsonMeta.asset_url,
           tokenId: i.tokenId.toNumber(),
           title: jsonMeta.metadata.title,
-          price: jsonMeta.metadata.price,
+          price: ethers.utils.formatEther(i.price.toString()),
           description: jsonMeta.metadata.description,
         };
         return item;
       })
     );
+    console.log(items);
 
     setMarketplaceNFTs(items);
   }
 
   const buyNFT = async (nft) => {
-    const { marketContract, marketAddress, nftContract, nftAddress } =
+    const { marketContract, marketAddress, nftContract } =
       await getSignedContracts();
 
     const signerAddress = await signer.getAddress();
@@ -46,13 +47,9 @@ export const Marketplace = () => {
     await nftContract.transferToken(marketAddress, signerAddress, nft.tokenId);
 
     const price = ethers.utils.parseUnits(nft.price, "ether");
-    const transaction = await marketContract.createMarketSale(
-      nftAddress,
-      nft.tokenId,
-      {
-        value: price,
-      }
-    );
+    const transaction = await marketContract.createMarketSale(nft.tokenId, {
+      value: price,
+    });
 
     return await transaction.wait();
   };
@@ -60,6 +57,7 @@ export const Marketplace = () => {
   return (
     <div className="grid">
       {marketplaceNFTs.map((item) => {
+        console.log(item);
         return (
           <NFTCard item={item}>
             <div className="price">

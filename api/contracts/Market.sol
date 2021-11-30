@@ -100,7 +100,7 @@ contract NFTMarket is ReentrancyGuard {
             "Please submit the asking price in order to complete the purchase"
         );
 
-        idToMarketItem[tokenId].seller.transfer(msg.value);
+        // idToMarketItem[tokenId].seller.transfer(msg.value);
         idToMarketItem[tokenId].owner = payable(msg.sender);
         idToMarketItem[tokenId].sold = true;
         _itemsSold.increment();
@@ -116,6 +116,7 @@ contract NFTMarket is ReentrancyGuard {
         for (uint256 i = 0; i < itemCount; i++) {
             if (idToMarketItem[i + 1].owner == address(0)) {
                 uint256 currentId = i + 1;
+                console.log(idToMarketItem[currentId].price);
                 MarketItem storage currentItem = idToMarketItem[currentId];
                 items[currentIndex] = currentItem;
                 currentIndex += 1;
@@ -154,6 +155,8 @@ contract NFTMarket is ReentrancyGuard {
         nonReentrant
     {
         require(price > 0, "Price must be at least 1 wei");
+
+        console.log("PRICE: ", price);
 
         idToMarketItem[tokenId].owner = payable(address(0));
         idToMarketItem[tokenId].price = price;
