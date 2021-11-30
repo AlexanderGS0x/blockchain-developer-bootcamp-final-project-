@@ -16,7 +16,9 @@ const getMarketContracts = async () => {
   } = jsonMarketContractResponse;
 
   // create a generic provider and query for unsold market items
-  const provider = new ethers.providers.JsonRpcProvider();
+  const provider = new ethers.providers.JsonRpcProvider(
+    process.env.REACT_APP_PROVIDER_ENDPOINT || null
+  );
   // const provider = new ethers.providers.JsonRpcProvider(
   //   "https://eth-ropsten.alchemyapi.io/v2/9Nz3XKdNuAVhF08SSkmBBR-dk81ui-HI"
   // );

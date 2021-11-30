@@ -1,6 +1,7 @@
 import "../index.css";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import { useForm } from "react-form";
 
 import { NFTCreationPanel } from "../components/NFTCreationPanel";
 import { getSignedContracts } from "../utils/getSignedContracts";
@@ -69,14 +70,27 @@ export const MyNftGrid = () => {
     await marketContract.relistItem(resellPrice, nft.tokenId);
   };
 
+  const NFTRelistForm = useForm({
+    onSubmit: async (values) => {
+      console.log("TEST: ", values);
+    },
+    // debugForm: true,
+  });
+
   return (
     <div className="dashboard-grid__row-bottom">
       {myNFTs.map((item) => {
         return (
           <NFTCard item={item}>
-            <div className="price">
-              <button onClick={() => relistNFT(item)}>relist</button>
-            </div>
+            <NFTRelistForm.Form>
+              <div className="price">
+                {/* <button type="submit" onClick={() => relistNFT(item)}>
+                  relist
+                </button> */}
+                {/* TODO: Pass nft item to values of form to relist via contract abi */}
+                <button type="submit">relist</button>
+              </div>
+            </NFTRelistForm.Form>
           </NFTCard>
         );
       })}
