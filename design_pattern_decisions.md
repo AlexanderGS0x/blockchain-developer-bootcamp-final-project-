@@ -16,7 +16,7 @@ We are inheriting and extended several, well audited smart contract interfaces f
 
 - [ERC721URIStorage.sol](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage): To allow for URI management for NFT metadata that is hosted on the distributed IPFS file system.
 
-- [ReentrancyGuard.sol](https://docs.openzeppelin.com/contracts/4.x/api/security#ReentrancyGuard): To protect against reetrant attack vectors. See `avoiding_common_attacks.md` for more details.
+- [ReentrancyGuard.sol](https://docs.openzeppelin.com/contracts/4.x/api/security#ReentrancyGuard): To protect against reetrant attack vectors. See [avoiding_common_attacks.md](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/avoiding_common_attacks.md#avoiding-common-attacks) for more details.
 
 ### Inter-Contract Execution
 
