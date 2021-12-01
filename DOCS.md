@@ -8,6 +8,7 @@ I suggest opening up four terminal windows at minimum for ease of use, although 
 
 Before we begin, you will need to have MetaMask installed and enabled on your browser of choice (cough, cough...Brave). I suggest installing a burner wallet for development.
 
+
 ## Development Environment
 
 #### Terminal One:
@@ -55,6 +56,7 @@ In terminal one, you should now be able to run `npm start` to spin up the api se
 
 You should now be able to access the frontend on `http://localhost:3000/`
 
+
 ## Running Tests
 
 Install dependencies:
@@ -67,17 +69,18 @@ Run the local blockchain node:
 
 `npm run local-node`
 
+#### In a second terminal:
+
+With the local blockchain node still running in the first terminal,
+
 Compile contracts:
 
 `npm run compile-contracts`
 
-#### In a second terminal:
-
-With the local blockchain node running in the first terminal,
-
 Run tests:
 
 `npx hardhat test --network localhost`
+
 
 ## Production dApp interaction
 
