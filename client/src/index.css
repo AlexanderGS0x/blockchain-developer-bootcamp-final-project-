@@ -42,7 +42,7 @@ body {
 
 .grid-item {
   outline: solid #d3d3d3 1px;
-  min-height: 400px;
+  max-height: 400px;
 }
 
 .grid-item .header img {

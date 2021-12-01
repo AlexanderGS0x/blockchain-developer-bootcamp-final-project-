@@ -3,16 +3,25 @@ import { InputGroup } from "@blueprintjs/core";
 
 export const NFTPriceInput = () => {
   const {
-    // meta: { error, isTouched }, TODO: add frontend error handling
+    meta: { error },
     getInputProps,
   } = useField("nft_price", {
     validate: validateInput,
     defaultIsTouched: false,
     defaultValue: "",
   });
-  return <InputGroup {...getInputProps()} type="text" />;
+  return (
+    <>
+      <InputGroup {...getInputProps()} type="text" />
+      <p>{error}</p>
+    </>
+  );
 };
 
-const validateInput = () => {
+const validateInput = (value) => {
+  console.log("VALUE: ", parseFloat(value, 10));
+  if (!parseFloat(value, 10)) {
+    return "Price must be a number";
+  }
   return false;
 };
