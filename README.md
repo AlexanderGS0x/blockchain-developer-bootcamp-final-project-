@@ -14,6 +14,8 @@ I wanted to illustrate to my team how we can extend our existing stack (Node.js/
 
 Hosted on Heroku: https://gentle-citadel-30423.herokuapp.com/
 
+Feed me NFT 😄: `0x6bbf5CB9ab2c1Ff248Aaa48Fdd10DC1732d7b1Cc`
+
 This spins up a distributed "marketplace", that essentially works as a CRUD app on the [Ropsten](https://ropsten.etherscan.io/) ethereum testnet. It allows `wallets` to browse (read) and buy/sell (write) digital items with Ropsten ETH in a similar way to how an NFT marketplace works. To me, in many ways this feels like a traditional API, only that it's monetized, doesn't have a database, and instead writes directly to the blockchain. Solidity instead of SQL.
 
 In order for this to work in the "real world" (whatever that is) these NFTs would should represent something valuable in order for the dApp to function properly. You'll notice some naming conventions that are car-related, but those are simply artifacts from the build, and could easily be collectibles, or information that should be exclusive (fashion, gaming pre-releases, concert tickets). Each token will be a minted NFT, while the associated metadata will be deployed to [IPFS](https://ipfs.io/), a distributed file hosting service. They can then be bought and sold via the marketplace, which is a smart contract that handles the transfer of funds between wallets.
