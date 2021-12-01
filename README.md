@@ -22,7 +22,7 @@ Solidity instead of SQL.
 
 In order for this to work in the "real world" (whatever that is) these NFTs should represent something valuable in order for the dApp to function properly. You'll notice some naming conventions that are car-related, but those are simply artifacts from the build, and could easily be collectibles, or information that should be exclusive (fashion, gaming pre-releases, concert tickets). Each token will be a minted NFT, while the associated metadata will be deployed to [IPFS](https://ipfs.io/), a distributed file hosting service. They can then be bought and sold via the marketplace, which is a smart contract that handles the transfer of funds between wallets.
 
-For the purposes of testing this dApp, there are no restrictions to what kind of asset you upload and create an NFT out of. However, I would eventually like to create some guardrails that prevent things like NSFW assets from being uploaded, or even calling an oracle to verify that the asset being uploaded is in fact a car (or another asset class for a prospective client). DAO voting validation in a multisig wallet could also be an option.
+For the purposes of testing this dApp, there are no restrictions to what kind of asset you upload and create an NFT out of. However, I would eventually like to create some guardrails in the form of Oracles that could help mitigate things like NSFW assets or some other form of image recognition. My front-end form handling can also be improved. A DAO voting mechanism in a multisig wallet could also be an option.
 
 _File Structure_
 
@@ -36,18 +36,24 @@ See [design_pattern_decisions.md](https://github.com/gambinish/blockchain-develo
 
 ## Logic
 
-Wallets (ie "users") can upload items they want to sell. Each item will be an NFT. NFTs are minted via smart-contract `NFT.sol`, and published the to the blockchain. These NFTs will have a starting `price`, a boolean representing the item being `sold`, a `wallet_public_key` and `token`, and made available for other wallets to purchase on the network via a marketplace smart contract `Market.sol`. NFTs can be purchased from the marketplace. Purchased NFTs can have their price modified by their owner, and relisted back into the marketplace. This flow can generate profits (or losses) as funds from purchases are transfered between wallets via the marketplace smart contract.
+Wallets (ie "users") can upload items they want to sell. Each item will be an NFT. NFTs are minted via `NFT.sol`, and published the to the blockchain. These NFTs will have a starting `price`, a boolean representing the item being `sold`, a `wallet_public_key` and `token`. They will be made available for other wallets to purchase on the network via `Market.sol`. NFTs can be purchased from the marketplace. Purchased NFTs can have their price modified by their owner, and relisted back into the marketplace. This flow can generate profits (or losses) as funds from purchases are transfered between wallets via `Market.sol`.
 
-- User uploads an asset on the `Dashboard`, and can `Generate NFT`, minting a unique NFT in the process.
-- NFT metadata will be queried from the blockchain to render out the sales listing on the marketplace
-- On a successful purchase, funds will be held in escrow until the smart contract is cleared and approved before being transferred between wallets.
+- User uploads an asset on the `/dashboard`, and can "Generate NFT", minting a unique NFT in the process.
+- NFT metadata will be queried from the blockchain to render out the sales listing on the `/marketplace`
+- On a successful purchase, funds will be held in escrow until the contract is cleared and approved before being transferred between wallets.
+
+> *NOTE:* Creating and buying NFTs require the user to sign *two* transactions in their wallet. This is something I really want to find a way around. It would be much better if it only required a single sig for each user flow.
+>
+> The issue I ran into was not being able to delegate the `tranferFrom` function of the extended OpenZeppelin `NFT.sol`, to the `Market.sol` contract. That is, if a user purchased an NFT, and they became the owner, they couldn't call `transferFrom` from within the marketplace contract in order to sell their newly purchased NFT...as they were no longer `msg.sender`.
+>
+> I worked around this by adding an internal `_transfer` function in `NFT.sol` and linking the contracts via their `constructor` and token `Counters`. Anyway... that's why the two wallet signatures are required on the UI. Improving the responsiveness of the UI would also help (toast messages etc.)
 
 ## Smart Contracts
 
-This dApp will be backed by 2 smart contracts
+The dApp will be backed by 2 smart contracts
 
 1. [Market.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/Market.sol) - NFT representing the ownership of an item on the blockchain, linking to metadata on IPFS
-2. [NFT.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/NFT.sol) - Smart contract where users can enter buy/sell an NFT. Smart contract will hold title and funds in escrow until transaction is approved via MetaMask.
+2. [NFT.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/NFT.sol) - Smart contract where users can interact to buy/sell an NFT. Contract will hold the funds in escrow until NFT `transferToken` method is called, and it's transaction is approved via MetaMask.
 
 ## Tech Stack:
 
