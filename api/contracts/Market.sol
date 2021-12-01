@@ -100,7 +100,7 @@ contract NFTMarket is ReentrancyGuard {
             "Please submit the asking price in order to complete the purchase"
         );
 
-        // idToMarketItem[tokenId].seller.transfer(msg.value);
+        idToMarketItem[tokenId].seller.transfer(msg.value);
         idToMarketItem[tokenId].owner = payable(msg.sender);
         idToMarketItem[tokenId].sold = true;
         _itemsSold.increment();

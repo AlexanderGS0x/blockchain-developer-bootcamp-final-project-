@@ -13,19 +13,8 @@ import { NFTPriceInput } from "../components/NFTPriceInput";
 export const Dashboard = () => {
   return (
     <div className="dashboard-grid">
-      <div className="dashboard-grid__row-top">
-        <div className="dashboard-grid__row-top--grid-item">
-          Titles in Distribution
-        </div>
-        <div className="dashboard-grid__row-top--grid-item">
-          Total Value in circulation
-        </div>
-        <div className="dashboard-grid__row-top--grid-item">
-          Transaction Amount
-        </div>
-        <div className="dashboard-grid__row-top--grid-item">Support</div>
-      </div>
       <NFTCreationPanel />
+      <h2 className="my-nft-grid__title">My NFTs</h2>
       <MyNftGrid />
     </div>
   );
@@ -35,11 +24,13 @@ export const MyNftGrid = () => {
   const { signer } = useWalletContext();
   const [selectedNFT, setSelectedNFT] = useState(null);
   const [myNFTs, setMyNFTs] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
     loadNFTs();
   }, []);
 
   async function loadNFTs() {
+    setIsFetching(true);
     const { nftContract, marketContract } = await getSignedContracts();
     const data = await marketContract.fetchMyNFTs();
 
@@ -60,6 +51,9 @@ export const MyNftGrid = () => {
     );
 
     setMyNFTs(items);
+    setTimeout(() => {
+      setIsFetching(false);
+    }, 1000);
   }
 
   const relistNFT = async (nft, price) => {
@@ -79,6 +73,23 @@ export const MyNftGrid = () => {
     },
     // debugForm: true,
   });
+
+  if (isFetching) {
+    return (
+      <div className="dashboard-grid__row-empty">
+        <h1>Fetching NFTs from blockchain network...</h1>
+      </div>
+    );
+  }
+
+  if (myNFTs.length === 0) {
+    return (
+      <div className="dashboard-grid__row-empty">
+        <h1>You haven't purchased any NFTs yet!</h1>
+        <h3>Browse available NFTs in the marketplace.</h3>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-grid__row-bottom">

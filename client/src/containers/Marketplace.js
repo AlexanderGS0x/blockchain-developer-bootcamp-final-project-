@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import { Button } from "@blueprintjs/core";
 import "../index.css";
 
 import { getMarketContracts } from "../utils/getMarketContracts";
@@ -10,11 +11,13 @@ import { useWalletContext } from "../hooks/useWalletContext";
 export const Marketplace = () => {
   const { signer } = useWalletContext();
   const [marketplaceNFTs, setMarketplaceNFTs] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
     loadNFTs();
   }, []);
 
   async function loadNFTs() {
+    setIsFetching(true);
     const { nftContract, marketContract } = await getMarketContracts();
     const data = await marketContract.fetchMarketItems();
 
@@ -33,9 +36,11 @@ export const Marketplace = () => {
         return item;
       })
     );
-    console.log(items);
 
     setMarketplaceNFTs(items);
+    setTimeout(() => {
+      setIsFetching(false);
+    }, 1000);
   }
 
   const buyNFT = async (nft) => {
@@ -54,14 +59,30 @@ export const Marketplace = () => {
     return await transaction.wait();
   };
 
+  if (isFetching) {
+    return (
+      <div className="marketplace-grid__row-empty">
+        <h1>Fetching NFTs from blockchain network...</h1>
+      </div>
+    );
+  }
+
+  if (marketplaceNFTs.length === 0) {
+    return (
+      <div className="marketplace-grid__row-empty">
+        <h1>No NFTs have been listed yet!</h1>
+        <h3>You can create NFTs in the dashboard.</h3>
+      </div>
+    );
+  }
+
   return (
     <div className="grid">
       {marketplaceNFTs.map((item) => {
-        console.log(item);
         return (
           <NFTCard item={item}>
             <div className="price">
-              <button onClick={() => buyNFT(item)}>buy</button>
+              <Button onClick={() => buyNFT(item)}>buy</Button>
             </div>
           </NFTCard>
         );
