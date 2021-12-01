@@ -19,7 +19,6 @@ export const NFTPriceInput = () => {
 };
 
 const validateInput = (value) => {
-  console.log("VALUE: ", parseFloat(value, 10));
   if (!parseFloat(value, 10)) {
     return "Price must be a number";
   }
