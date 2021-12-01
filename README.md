@@ -70,3 +70,22 @@ _Next Steps that have not been implemented for this final project [TODO]_
 - Oracle to validate that assets are of a certain type. Potentially calling a computer vision api.
 - DAO members vote on whether or not an asset should be uploaded via multi-sig smart contract.
 - Chainlink Oracle + Chromata api to enable randomized generative art for the NFTs.
+
+## Demo Recordings
+
+### `CreateMarketItem`
+
+https://user-images.githubusercontent.com/35090461/144199671-d4d8944c-740f-4cad-80e9-20139bfba129.mp4
+
+### `BuyNFT`
+
+https://user-images.githubusercontent.com/35090461/144199714-29bdedc0-668d-4c4a-bbd9-8e89e55e4ceb.mp4
+
+### `Relist`
+
+https://user-images.githubusercontent.com/35090461/144199778-6721997f-e287-4295-8613-88db1be301b4.mp4
+
+
+
+
+
