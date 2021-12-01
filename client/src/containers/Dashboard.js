@@ -2,6 +2,7 @@ import "../index.css";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useForm } from "react-form";
+import { Button } from "@blueprintjs/core";
 
 import { NFTCreationPanel } from "../components/NFTCreationPanel";
 import { getSignedContracts } from "../utils/getSignedContracts";
@@ -62,8 +63,6 @@ export const MyNftGrid = () => {
   }
 
   const relistNFT = async (nft, price) => {
-    // console.log("THIS: ", nft);
-    // console.log("THAT: ", price);
     const { marketContract, marketAddress, nftContract } =
       await getSignedContracts();
 
@@ -89,13 +88,9 @@ export const MyNftGrid = () => {
             <NFTRelistForm.Form>
               <div className="price">
                 <NFTPriceInput />
-                {/* <button type="submit" onClick={() => relistNFT(item)}>
+                <Button type="submit" onClick={() => setSelectedNFT(item)}>
                   relist
-                </button> */}
-                {/* TODO: Pass nft item to values of form to relist via contract abi */}
-                <button type="submit" onClick={() => setSelectedNFT(item)}>
-                  relist
-                </button>
+                </Button>
               </div>
             </NFTRelistForm.Form>
           </NFTCard>
