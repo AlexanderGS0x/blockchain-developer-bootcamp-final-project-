@@ -7,6 +7,7 @@ import { NFTCreationPanel } from "../components/NFTCreationPanel";
 import { getSignedContracts } from "../utils/getSignedContracts";
 import { useWalletContext } from "../hooks/useWalletContext";
 import { NFTCard } from "../components/NFTCard";
+import { NFTPriceInput } from "../components/NFTPriceInput";
 
 export const Dashboard = () => {
   return (
@@ -31,6 +32,7 @@ export const Dashboard = () => {
 
 export const MyNftGrid = () => {
   const { signer } = useWalletContext();
+  const [selectedNFT, setSelectedNFT] = useState(null);
   const [myNFTs, setMyNFTs] = useState([]);
   useEffect(() => {
     loadNFTs();
@@ -59,12 +61,14 @@ export const MyNftGrid = () => {
     setMyNFTs(items);
   }
 
-  const relistNFT = async (nft) => {
+  const relistNFT = async (nft, price) => {
+    // console.log("THIS: ", nft);
+    // console.log("THAT: ", price);
     const { marketContract, marketAddress, nftContract } =
       await getSignedContracts();
 
     const signerAddress = await signer.getAddress();
-    const resellPrice = ethers.utils.parseUnits("0.09", "ether");
+    const resellPrice = ethers.utils.parseUnits(price.toString(), "ether");
 
     await nftContract.transferToken(signerAddress, marketAddress, nft.tokenId);
     await marketContract.relistItem(resellPrice, nft.tokenId);
@@ -72,7 +76,7 @@ export const MyNftGrid = () => {
 
   const NFTRelistForm = useForm({
     onSubmit: async (values) => {
-      console.log("TEST: ", values);
+      relistNFT(selectedNFT, values.nft_price);
     },
     // debugForm: true,
   });
@@ -84,11 +88,14 @@ export const MyNftGrid = () => {
           <NFTCard item={item}>
             <NFTRelistForm.Form>
               <div className="price">
+                <NFTPriceInput />
                 {/* <button type="submit" onClick={() => relistNFT(item)}>
                   relist
                 </button> */}
                 {/* TODO: Pass nft item to values of form to relist via contract abi */}
-                <button type="submit">relist</button>
+                <button type="submit" onClick={() => setSelectedNFT(item)}>
+                  relist
+                </button>
               </div>
             </NFTRelistForm.Form>
           </NFTCard>
