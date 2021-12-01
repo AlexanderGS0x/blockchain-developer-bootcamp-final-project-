@@ -24,4 +24,4 @@ We are inheriting and extended several, well audited smart contract interfaces f
 
 > Note: I ran into some blockers here that I needed to work around in order to meet the deadline. See TODOs for more details
 
-- The `NFTMarket` contract can call function on `NFT` by inheriting it, and then executing one of it's methods, such as `transferFrom` which is inherited from the open zeppelin [ERC721 spec](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721). See: [LINK HERE]()
+- The `NFTMarket` contract can call function on `NFT` by inheriting it, and then executing one of it's methods, such as `transferFrom` which is inherited from the OpenZeppelin [ERC721 spec](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721). See: [LINK HERE]()
