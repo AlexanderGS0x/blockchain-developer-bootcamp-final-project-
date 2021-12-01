@@ -5,7 +5,7 @@
 1. [Getting Started](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/DOCS.md)
 2. [Design Pattern Decisions](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/design_pattern_decisions.md)
 3. [Avoiding Common Attacks](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/avoiding_common_attacks.md)
-4. [Demo Walkthrough]()
+4. [Demo Walkthrough](https://github.com/gambinish/blockchain-developer-bootcamp-final-project#demo-recordings)
 5. [Running Tests](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/DOCS.md#running-tests)
 
 This project scaffolds a full stack Web2/Web3 integration.
