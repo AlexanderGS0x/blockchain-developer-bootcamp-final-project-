@@ -5,6 +5,7 @@
 1. [Getting Started]()
 2. [Design Pattern Decisions]()
 3. [Avoiding Common Attacks]()
+4. [Demo Walkthrough]()
 
 This project scaffolds a full stack Web2/Web3 integration.
 
