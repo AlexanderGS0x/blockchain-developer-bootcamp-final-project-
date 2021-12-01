@@ -18,7 +18,7 @@ This spins up a distributed "marketplace", that essentially works as a CRUD app 
 
 In order for this to work in the "real world" (whatever that is) these NFTs would should represent something valuable in order for the dApp to function properly. You'll notice some naming conventions that are car-related, but that's just for the sake of building, and could easily be collectibles, or information that should be exclusive (fashion, gaming pre-releases, concert tickets). Each token will be a minted NFT, while the associated metadata will be deployed to [IPFS](https://ipfs.io/), a distributed file hosting service. They can then be bought and sold via the marketplace, which is a smart contract that handles the transfer of funds between wallets.
 
-For the purposes of testing this dApp, there are not restrictions to what kind of asset you upload and create an NFT out of. However, I would eventually like to create some guardrails that prevent things like NSFW assets from being uploaded, or even calling an oracle to verify that the asset being uploaded is in fact a car (or another asset class for a prospective client).
+For the purposes of testing this dApp, there are no restrictions to what kind of asset you upload and create an NFT out of. However, I would eventually like to create some guardrails that prevent things like NSFW assets from being uploaded, or even calling an oracle to verify that the asset being uploaded is in fact a car (or another asset class for a prospective client).
 
 _File Structure_
 
