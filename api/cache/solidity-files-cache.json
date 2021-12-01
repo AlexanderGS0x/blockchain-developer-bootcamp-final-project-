@@ -440,8 +440,8 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/Market.sol": {
-      "lastModificationDate": 1638328123931,
-      "contentHash": "6587c52c7013c411d89b40919472704b",
+      "lastModificationDate": 1638345596471,
+      "contentHash": "a0de0bc7fb1c22dcaa5eaa7757da470c",
       "sourceName": "contracts/Market.sol",
       "solcConfig": {
         "version": "0.8.3",
@@ -550,8 +550,8 @@
       ]
     },
     "/Users/nicholasgambino/code/projects/blockchain-developer-bootcamp-final-project/api/contracts/NFT.sol": {
-      "lastModificationDate": 1638157347673,
-      "contentHash": "81d22be4ed6b21a6f4b5966e15c10061",
+      "lastModificationDate": 1638345655088,
+      "contentHash": "9ea92fa96e2b4d4a63a430f055a9bba8",
       "sourceName": "contracts/NFT.sol",
       "solcConfig": {
         "version": "0.8.3",

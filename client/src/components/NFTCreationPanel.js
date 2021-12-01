@@ -22,7 +22,14 @@ export const NFTCreationPanel = () => {
       data.append("nft.title", values.nft_title);
 
       let mintedNft = await createNft(data, nftContract, values.nft_price);
-      await createMarketItem(marketContract, nftAddress, mintedNft);
+      const txEvent = await createMarketItem(
+        marketContract,
+        nftAddress,
+        mintedNft
+      );
+      if (txEvent) {
+        alert("NFT Created! It should appear in the marketplace soon");
+      }
     },
     // debugForm: true,
   });

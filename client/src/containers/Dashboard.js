@@ -64,7 +64,17 @@ export const MyNftGrid = () => {
     const resellPrice = ethers.utils.parseUnits(price.toString(), "ether");
 
     await nftContract.transferToken(signerAddress, marketAddress, nft.tokenId);
-    await marketContract.relistItem(resellPrice, nft.tokenId);
+    let transaction = await marketContract.relistItem(resellPrice, nft.tokenId);
+
+    let tx = await transaction.wait();
+
+    let event = tx.events[0];
+
+    if (event) {
+      alert(
+        "NFT Relisted! It should disappear from you dashboard, and reappear in the marketplace soon."
+      );
+    }
   };
 
   const NFTRelistForm = useForm({

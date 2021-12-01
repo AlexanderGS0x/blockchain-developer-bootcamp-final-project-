@@ -56,7 +56,13 @@ export const Marketplace = () => {
       value: price,
     });
 
-    return await transaction.wait();
+    let tx = await transaction.wait();
+
+    let event = tx.events[0];
+
+    if (event) {
+      alert("Purchased NFT! It should appear in your dashboard soon.");
+    }
   };
 
   if (isFetching) {
