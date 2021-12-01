@@ -55,6 +55,30 @@ In terminal one, you should now be able to run `npm start` to spin up the api se
 
 You should now be able to access the frontend on `http://localhost:3000/`
 
+## Running Tests
+
+Install dependencies:
+
+`cd api && npm install`
+
+#### In one terminal:
+
+Run the local blockchain node:
+
+`npm run local-node`
+
+Compile contracts:
+
+`npm run compile-contracts`
+
+#### In a second terminal:
+
+With the local blockchain node running in the first terminal,
+
+Run tests:
+
+`npx hardhat test --network localhost`
+
 ## Production dApp interaction
 
 As this project is deployed on the Ropsten testnet, you will need a burner MetaMask wallet on the Ropsten network, with some Ropsten ETH to interact with the dApp.
