@@ -8,11 +8,14 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 import "hardhat/console.sol";
 
+/// @title A marketplace for buying and selling NFT's
+/// @author Nicholas Gambino
 contract NFTMarket is ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
     Counters.Counter private _itemsSold;
 
+    /// @notice Represent the data structure for a market item
     struct MarketItem {
         uint256 itemId;
         address nftContract;
@@ -23,8 +26,10 @@ contract NFTMarket is ReentrancyGuard {
         bool sold;
     }
 
+    /// @dev The id of the market item
     mapping(uint256 => MarketItem) private idToMarketItem;
 
+    /// @notice Emit an event after a market item is created
     event MarketItemCreated(
         uint256 indexed itemId,
         address indexed nftContract,
@@ -35,13 +40,19 @@ contract NFTMarket is ReentrancyGuard {
         bool sold
     );
 
-    /* Query how many nfts are for sale */
+    /// @notice Emit an event after a market item is created
+    event MarketItemSold(uint256 indexed tokenId);
+
+    /// @notice Emit an event after a market item is created
+    event MarketItemRelisted(uint256 indexed tokenId);
+
+    /// @return number of items listed in marketplace
     function fetchMarketItemCount() public view returns (uint256) {
         uint256 unsoldItemCount = _itemIds.current() - _itemsSold.current();
         return unsoldItemCount;
     }
 
-    /* Query how many nfts user owns */
+    /// @return number of items listed owned by wallet
     function fetchOwnedNFTCount() public view returns (uint256) {
         uint256 totalItemCount = _itemIds.current();
         uint256 itemCount = 0;
@@ -54,7 +65,9 @@ contract NFTMarket is ReentrancyGuard {
         return itemCount;
     }
 
-    /* Places an item for sale on the marketplace */
+    /// @param nftContract: address of the NFT contract
+    /// @param tokenId: tokenID of the NFT
+    /// @param price: price of the NFT
     function createMarketItem(
         address nftContract,
         uint256 tokenId,
@@ -90,8 +103,7 @@ contract NFTMarket is ReentrancyGuard {
         );
     }
 
-    /* Creates the sale of a marketplace item */
-    /* Transfers ownership of the nft from marketplace ("escrow") to buyer, transfers funds from buyer to creator */
+    /// @param itemId of NFT
     function createMarketSale(uint256 itemId) public payable nonReentrant {
         uint256 price = idToMarketItem[itemId].price;
         uint256 tokenId = idToMarketItem[itemId].tokenId;
@@ -104,9 +116,11 @@ contract NFTMarket is ReentrancyGuard {
         idToMarketItem[tokenId].owner = payable(msg.sender);
         idToMarketItem[tokenId].sold = true;
         _itemsSold.increment();
+
+        emit MarketItemSold(tokenId);
     }
 
-    /* Returns all unsold market items */
+    /// @return an array of unsold market items
     function fetchMarketItems() public view returns (MarketItem[] memory) {
         uint256 itemCount = _itemIds.current();
         uint256 unsoldItemCount = _itemIds.current() - _itemsSold.current();
@@ -125,7 +139,7 @@ contract NFTMarket is ReentrancyGuard {
         return items;
     }
 
-    /* Returns only items that a user has purchased */
+    /// @return an array of market items purchased by wallet
     function fetchMyNFTs() public view returns (MarketItem[] memory) {
         uint256 totalItemCount = _itemIds.current();
         uint256 itemCount = 0;
@@ -149,6 +163,8 @@ contract NFTMarket is ReentrancyGuard {
         return items;
     }
 
+    /// @param price: the relist price of NFT
+    /// @param tokenId: the tokenId of the NFT
     function relistItem(uint256 price, uint256 tokenId)
         public
         payable
@@ -164,5 +180,6 @@ contract NFTMarket is ReentrancyGuard {
         idToMarketItem[tokenId].seller = payable(msg.sender);
 
         _itemsSold.decrement();
+        emit MarketItemRelisted(tokenId);
     }
 }
