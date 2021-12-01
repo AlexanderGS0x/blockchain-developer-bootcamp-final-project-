@@ -5,7 +5,9 @@ const createMarketItem = async (marketContract, nftAddress, mintedNft) => {
     mintedNft.tokenId,
     mintedNft.price
   );
-  await transaction.wait();
+  let tx = await transaction.wait();
+  let event = tx.events[0];
+  return event;
 };
 
 export { createMarketItem };
