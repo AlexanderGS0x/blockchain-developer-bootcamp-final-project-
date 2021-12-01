@@ -44,7 +44,7 @@ Wallets (ie "users") can upload items they want to sell. Each item will be an NF
 
 This dApp will be backed by 2 smart contracts
 
-1. [Market.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/Market.sol) - NFT representing the ownership of an item on the blockchain, linking to metadata on ipfs, via Pinata sdk
+1. [Market.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/Market.sol) - NFT representing the ownership of an item on the blockchain, linking to metadata on IPFS
 2. [NFT.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/NFT.sol) - Smart contract where users can enter buy/sell an NFT. Smart contract will hold title and funds in escrow until transaction is approved via MetaMask.
 
 ## Tech Stack:
