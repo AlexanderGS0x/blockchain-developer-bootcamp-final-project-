@@ -30,7 +30,7 @@ cd api && npm run local-node
 
 Keep this terminal open for later.
 
-> Do not close this window. This spins up a development chain with several provisioned accounts. You should now connect your metamask wallet to this local blockchain network, and then import at least two of these accounts into your MetaMask development/"burner" wallet (Primary wallet strongly not advised). Use these accounts to interact with the dApp. You can learn how to connect and import the development network & accounts from Hardhat into Metmask [here](https://hardhat.org/getting-started/#connecting-a-wallet-or-dapp-to-hardhat-network)
+> Do not close this window. This spins up a development chain with several provisioned accounts. You should now connect your Metamask wallet to this local blockchain network, and then import at least two of these accounts into your MetaMask development/"burner" wallet (Primary wallet strongly not advised). Use these accounts to interact with the dApp. You can learn how to connect and import the development network & accounts from Hardhat into Metmask [here](https://hardhat.org/getting-started/#connecting-a-wallet-or-dapp-to-hardhat-network)
 
 #### Terminal Three:
 
