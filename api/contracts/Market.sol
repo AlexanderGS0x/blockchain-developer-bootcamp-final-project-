@@ -92,11 +92,7 @@ contract NFTMarket is ReentrancyGuard {
 
     /* Creates the sale of a marketplace item */
     /* Transfers ownership of the nft from marketplace ("escrow") to buyer, transfers funds from buyer to creator */
-    function createMarketSale(address nftContract, uint256 itemId)
-        public
-        payable
-        nonReentrant
-    {
+    function createMarketSale(uint256 itemId) public payable nonReentrant {
         uint256 price = idToMarketItem[itemId].price;
         uint256 tokenId = idToMarketItem[itemId].tokenId;
         require(
@@ -104,10 +100,9 @@ contract NFTMarket is ReentrancyGuard {
             "Please submit the asking price in order to complete the purchase"
         );
 
-        idToMarketItem[itemId].seller.transfer(msg.value);
-        IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
-        idToMarketItem[itemId].owner = payable(msg.sender);
-        idToMarketItem[itemId].sold = true;
+        idToMarketItem[tokenId].seller.transfer(msg.value);
+        idToMarketItem[tokenId].owner = payable(msg.sender);
+        idToMarketItem[tokenId].sold = true;
         _itemsSold.increment();
     }
 
@@ -121,6 +116,7 @@ contract NFTMarket is ReentrancyGuard {
         for (uint256 i = 0; i < itemCount; i++) {
             if (idToMarketItem[i + 1].owner == address(0)) {
                 uint256 currentId = i + 1;
+                console.log(idToMarketItem[currentId].price);
                 MarketItem storage currentItem = idToMarketItem[currentId];
                 items[currentIndex] = currentItem;
                 currentIndex += 1;
@@ -153,34 +149,20 @@ contract NFTMarket is ReentrancyGuard {
         return items;
     }
 
-    /* Returns only items a user has created */
-    function fetchItemsCreated() public view returns (MarketItem[] memory) {
-        uint256 totalItemCount = _itemIds.current();
-        uint256 itemCount = 0;
-        uint256 currentIndex = 0;
+    function relistItem(uint256 price, uint256 tokenId)
+        public
+        payable
+        nonReentrant
+    {
+        require(price > 0, "Price must be at least 1 wei");
 
-        for (uint256 i = 0; i < totalItemCount; i++) {
-            if (idToMarketItem[i + 1].seller == msg.sender) {
-                itemCount += 1;
-            }
-        }
+        console.log("PRICE: ", price);
 
-        MarketItem[] memory items = new MarketItem[](itemCount);
-        for (uint256 i = 0; i < totalItemCount; i++) {
-            if (idToMarketItem[i + 1].seller == msg.sender) {
-                uint256 currentId = i + 1;
-                MarketItem storage currentItem = idToMarketItem[currentId];
-                items[currentIndex] = currentItem;
-                currentIndex += 1;
-            }
-        }
-        return items;
-    }
-
-    function relistItem(uint256 tokenId) public payable nonReentrant {
         idToMarketItem[tokenId].owner = payable(address(0));
+        idToMarketItem[tokenId].price = price;
         idToMarketItem[tokenId].sold = false;
         idToMarketItem[tokenId].seller = payable(msg.sender);
+
         _itemsSold.decrement();
     }
 }

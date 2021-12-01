@@ -4,7 +4,9 @@ import Web3Modal from "web3modal";
 // intantiates function with Web3Provider
 // these contracts will need to be signed
 const getSignedContracts = async () => {
-  const response = await fetch("http://localhost:8080/get-market-contract");
+  const response = await fetch(
+    `${process.env.REACT_APP_SERVER_ENDPOINT}/get-market-contract`
+  );
   const jsonMarketContractResponse = await response.json();
 
   const {

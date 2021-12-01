@@ -1,10 +1,13 @@
 import { ethers } from "ethers";
 
 const createNft = async (data, nftContract, startingPrice) => {
-  const ipfsResponse = await fetch("http://localhost:8080/create-nft", {
-    method: "POST",
-    body: data,
-  });
+  const ipfsResponse = await fetch(
+    `${process.env.REACT_APP_SERVER_ENDPOINT}/create-nft`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
   const ipfsJsonResponse = await ipfsResponse.json();
 
   let transaction = await nftContract.createToken(

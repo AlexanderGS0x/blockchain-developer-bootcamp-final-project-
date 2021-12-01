@@ -1,28 +1,20 @@
 import "../index.css";
 import { useState, useEffect } from "react";
-import "../index.css";
+import { ethers } from "ethers";
+import { useForm } from "react-form";
+import { Button } from "@blueprintjs/core";
 
 import { NFTCreationPanel } from "../components/NFTCreationPanel";
 import { getSignedContracts } from "../utils/getSignedContracts";
 import { useWalletContext } from "../hooks/useWalletContext";
 import { NFTCard } from "../components/NFTCard";
+import { NFTPriceInput } from "../components/NFTPriceInput";
 
 export const Dashboard = () => {
   return (
     <div className="dashboard-grid">
-      <div className="dashboard-grid__row-top">
-        <div className="dashboard-grid__row-top--grid-item">
-          Titles in Distribution
-        </div>
-        <div className="dashboard-grid__row-top--grid-item">
-          Total Value in circulation
-        </div>
-        <div className="dashboard-grid__row-top--grid-item">
-          Transaction Amount
-        </div>
-        <div className="dashboard-grid__row-top--grid-item">Support</div>
-      </div>
       <NFTCreationPanel />
+      <h2 className="my-nft-grid__title">My NFTs</h2>
       <MyNftGrid />
     </div>
   );
@@ -30,12 +22,15 @@ export const Dashboard = () => {
 
 export const MyNftGrid = () => {
   const { signer } = useWalletContext();
+  const [selectedNFT, setSelectedNFT] = useState(null);
   const [myNFTs, setMyNFTs] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
     loadNFTs();
   }, []);
 
   async function loadNFTs() {
+    setIsFetching(true);
     const { nftContract, marketContract } = await getSignedContracts();
     const data = await marketContract.fetchMyNFTs();
 
@@ -44,12 +39,11 @@ export const MyNftGrid = () => {
         const tokenUri = await nftContract.tokenURI(i.tokenId);
         const meta = await fetch(tokenUri);
         const jsonMeta = await meta.json();
-        // let price = ethers.utils.formatUnits(i.price.toString(), "ether");
         let item = {
           url: jsonMeta.asset_url,
           tokenId: i.tokenId.toNumber(),
           title: jsonMeta.metadata.title,
-          price: jsonMeta.metadata.price,
+          price: ethers.utils.formatEther(i.price.toString()),
           description: jsonMeta.metadata.description,
         };
         return item;
@@ -57,31 +51,59 @@ export const MyNftGrid = () => {
     );
 
     setMyNFTs(items);
+    setTimeout(() => {
+      setIsFetching(false);
+    }, 1000);
   }
 
-  const relistNFT = async (tokenId) => {
-    const { nftContract, marketContract, marketAddress } =
+  const relistNFT = async (nft, price) => {
+    const { marketContract, marketAddress, nftContract } =
       await getSignedContracts();
 
-    let txTransferNFT = await nftContract.transferFrom(
-      signer.getAddress(),
-      marketAddress,
-      tokenId
-    );
-    await txTransferNFT.wait();
+    const signerAddress = await signer.getAddress();
+    const resellPrice = ethers.utils.parseUnits(price.toString(), "ether");
 
-    const txRelistNFT = await marketContract.relistItem(tokenId);
-    await txRelistNFT.wait();
+    await nftContract.transferToken(signerAddress, marketAddress, nft.tokenId);
+    await marketContract.relistItem(resellPrice, nft.tokenId);
   };
+
+  const NFTRelistForm = useForm({
+    onSubmit: async (values) => {
+      relistNFT(selectedNFT, values.nft_price);
+    },
+    // debugForm: true,
+  });
+
+  if (isFetching) {
+    return (
+      <div className="dashboard-grid__row-empty">
+        <h1>Fetching NFTs from blockchain network...</h1>
+      </div>
+    );
+  }
+
+  if (myNFTs.length === 0) {
+    return (
+      <div className="dashboard-grid__row-empty">
+        <h1>You haven't purchased any NFTs yet!</h1>
+        <h3>Browse available NFTs in the marketplace.</h3>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-grid__row-bottom">
       {myNFTs.map((item) => {
         return (
           <NFTCard item={item}>
-            <div className="price">
-              <button onClick={() => relistNFT(item.tokenId)}>reslist</button>
-            </div>
+            <NFTRelistForm.Form>
+              <div className="price">
+                <NFTPriceInput />
+                <Button type="submit" onClick={() => setSelectedNFT(item)}>
+                  relist
+                </Button>
+              </div>
+            </NFTRelistForm.Form>
           </NFTCard>
         );
       })}

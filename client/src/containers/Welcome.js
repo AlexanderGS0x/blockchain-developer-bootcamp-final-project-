@@ -8,7 +8,7 @@ export const Welcome = () => {
       <h1>Welcome to TitleX</h1>
       <h3>A NFT vehicle marketplace</h3>
 
-      <Link to="/marketplace">
+      <Link to="/dashboard">
         <Button text="Launch App" />
       </Link>
     </div>
