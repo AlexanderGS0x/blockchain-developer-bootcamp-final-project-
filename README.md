@@ -24,21 +24,15 @@ _File Structure_
 
 Users will interact with a Web2 client (React), that will display the metadata for all available NFTs for sale. These metadata are associated to an NFT on the blockchain. The client server is located in the `client` directory.
 
-Web client will interact with a Web2 API (Express) that will protect secrets, and will handle smart contract deployments, tests, and smart contract compilation. Ideally this can be further secured, but it might be useful in the future for handling things that blockchain may not be ideally suited for (push notifications, chat, etc). The API server is located in the `api` directory.
+Web client will interact with a Web2 API (Express) that will in turn protect secrets, as well as handle smart contract deployments, compilation, and tests. Ideally this can be further secured. This API server might be useful for handling things that blockchains may not currently suited for (push notifications, chat, etc). The API server is located in the `api` directory.
 
 Smart contracts will handle business logic associated with escrow funds and transfering ownership of NFTs. There is no database! 🎉
 
-See `design_pattern_decisions.md` for more details on why certain architecutre and design pattern decisions were made.
-
-_Architecture Reasoning_
-
-While the web2 api server may seem unecessary (everything can simply live in the client), I feel like there is still some value in having a separation of concerns between the client and server, and would be beneficial long-term from a security and scalability perspective. I have always been a fan of distributed microservice architecture, and wanted to emulate that as much as possible in this project. I feel like a microservice system design pairs nicely with the tennets of distributed blockchain architecture. Should this scale, it's very possible that we may need to begin tacking on services that blockchains may not yet be ideally suited for, and I feel having this separation of concerns would help to make that process a bit more manageable.
-
-Both the `client` and `api` directories have their own `.env` files. These are secured on the server, but can be replicated locally if spinning up a local chain for development. I would love to make this process a bit more automated, as it's currently a bit of a manual process (see `Getting Started` for local development setup).
+See [design_pattern_decisions.md](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/design_pattern_decisions.md#design-pattern-decisions) for more details on why certain architecutre and design pattern decisions were made.
 
 ## Logic
 
-Wallets (ie "users") should be able to upload items they want to sell. Each item will be an NFT. NFTs are minted via smart-contract `NFT.sol`, and published the to the blockchain. These NFTs will have a starting `price`, a boolean representing the item being `sold`, a `wallet_public_key` and `token`, and made available for other wallets to purchase on the network via a marketplace smart contract `NFTMarket.sol`. NFTs can be purchased from the marketplace. Purchased NFTs can have their price modified, and relisted back into the marketplace. This flow can generate profits (or losses) as funds from purchases are transfered between wallets via the marketplace smart contract.
+Wallets (ie "users") can upload items they want to sell. Each item will be an NFT. NFTs are minted via smart-contract `NFT.sol`, and published the to the blockchain. These NFTs will have a starting `price`, a boolean representing the item being `sold`, a `wallet_public_key` and `token`, and made available for other wallets to purchase on the network via a marketplace smart contract `Market.sol`. NFTs can be purchased from the marketplace. Purchased NFTs can have their price modified by their owner, and relisted back into the marketplace. This flow can generate profits (or losses) as funds from purchases are transfered between wallets via the marketplace smart contract.
 
 - User uploads an asset on the `Dashboard`, and can `Generate NFT`, minting a unique NFT in the process.
 - NFT metadata will be queried from the blockchain to render out the sales listing on the marketplace
@@ -48,8 +42,8 @@ Wallets (ie "users") should be able to upload items they want to sell. Each item
 
 This dApp will be backed by 2 smart contracts
 
-1. `NFTMarket.sol` - NFT representing the ownership of an item on the blockchain, linking to metadata on ipfs, via Pinata sdk
-2. `NFT.sol` = Smart contract where users can enter buy/sell an NFT. Smart contract will hold title and funds in escrow until transaction is approved via MetaMask.
+1. [Market.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/Market.sol) - NFT representing the ownership of an item on the blockchain, linking to metadata on ipfs, via Pinata sdk
+2. [NFT.sol](https://github.com/gambinish/blockchain-developer-bootcamp-final-project/blob/main/api/contracts/NFT.sol) = Smart contract where users can enter buy/sell an NFT. Smart contract will hold title and funds in escrow until transaction is approved via MetaMask.
 
 ## Tech Stack:
 
