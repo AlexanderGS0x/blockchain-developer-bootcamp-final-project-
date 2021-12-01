@@ -10,7 +10,7 @@
 
 This project scaffolds a full stack Web2/Web3 integration.
 
-Hosted on Heroku: https://gentle-citadel-30423.herokuapp.com/marketplace
+Hosted on Heroku: https://gentle-citadel-30423.herokuapp.com/
 
 I wanted to illustrate to my team how we can extend our existing stack (Node.js/React) into the Web3 space. I am still trying to improve and iterate on this.
 
