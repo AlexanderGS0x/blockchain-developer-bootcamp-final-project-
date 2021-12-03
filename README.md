@@ -17,7 +17,7 @@ Hosted on Heroku: https://gentle-citadel-30423.herokuapp.com/
 
 Feed me NFT 😄: `0x6bbf5CB9ab2c1Ff248Aaa48Fdd10DC1732d7b1Cc`
 
-This spins up a distributed "marketplace", that works as a distributed CRUD application on the [Ropsten](https://ropsten.etherscan.io/) Ethereum testnet. It allows `wallets` to browse (read) and buy/sell (write) digital items with Ropsten ETH in a similar way to how an NFT marketplace works. To me, in many ways this feels like a traditional API, only that it's monetized, doesn't have a database, and instead writes directly to the blockchain.
+This spins up a "marketplace", that works as a distributed CRUD application on the [Ropsten](https://ropsten.etherscan.io/) Ethereum testnet. It allows `wallets` to browse (read) and buy/sell (write) digital items with Ropsten ETH in a similar way to how an NFT marketplace works. To me, in many ways this feels like a traditional API, only that it's monetized, doesn't have a database, and instead writes directly to the blockchain.
 
 Solidity instead of SQL.
 
